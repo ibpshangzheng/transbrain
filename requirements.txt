@@ -163,8 +163,7 @@ torch==2.4.1
 tornado==6.4.2
 tqdm==4.67.1
 traitlets==5.14.3
-# Editable install with no version control (transbrain==0.1.12)
--e /ssd01/anaconda3/envs/transbrain_env/lib/python3.8/site-packages
+transbrain==0.1.12
 triton==3.0.0
 twine==6.1.0
 typing_extensions==4.12.2
