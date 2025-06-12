@@ -131,11 +131,11 @@ if data_type == 'Table':
         """,unsafe_allow_html=True)
 
     if direction == 'mouse to human':
-        TEMPLATE_DIR = "../transbrain/exampledata/mouse"
+        TEMPLATE_DIR = "./transbrain/exampledata/mouse"
         filename = f"{'mouse'}_{region_flag}_example_data.csv"
         template_path = os.path.join(TEMPLATE_DIR, filename)
     else:
-        TEMPLATE_DIR = "../transbrain/exampledata/human"
+        TEMPLATE_DIR = "./transbrain/exampledata/human"
         filename = f"{'human'}_{atlas_flag}_{region_flag}_example_data.csv"
         template_path = os.path.join(TEMPLATE_DIR,atlas_flag,filename)
     
@@ -160,16 +160,16 @@ elif data_type == 'Image':
         """,unsafe_allow_html=True)
 
     if direction == 'mouse to human':
-        DATA_DIR = "../transbrain/exampledata/mouse"
+        DATA_DIR = "./transbrain/exampledata/mouse"
         filename = "mouse_example_phenotype_data.nii.gz"
         data_path = os.path.join(DATA_DIR, filename)
-        template_path = "../transbrain/atlas/p56_atlas.nii.gz"
+        template_path = "./transbrain/atlas/p56_atlas.nii.gz"
 
     else:
-        DATA_DIR = "../transbrain/exampledata/human"
+        DATA_DIR = "./transbrain/exampledata/human"
         filename = "human_example_phenotype_data.nii.gz"
         data_path = os.path.join(DATA_DIR, filename)
-        template_path = "../transbrain/atlas/mni152nlin6_res-2x2x2_t1w.nii.gz"
+        template_path = "./transbrain/atlas/mni152nlin6_res-2x2x2_t1w.nii.gz"
 
 
     # zip
@@ -316,7 +316,7 @@ if st.sidebar.button("9. Start Mapping"):
 
 
 # Main content: image and introduction
-st.image("./figure/web_title.png", use_container_width=True)
+st.image("./web/figure/web_title.png", use_container_width=True)
 
 st.title("TransBrain: translating brain-wide phenotypes between humans and mice")
 #需要替换网址
@@ -324,7 +324,7 @@ st.markdown("""
 🧠 **TransBrain** is an integrated computational framework for bidirectional translation of brain-wide phenotypes between humans and mice. Specifically, TransBrain provides a systematic approach for cross-species quantitative comparison and mechanistic investigation of both normal and pathological brain functions.
 """)
 
-st.image("../figure/transbrain_fig1.jpg", caption="TransBrain framework")
+st.image("./figure/transbrain_fig1.jpg", caption="TransBrain framework")
 
 
 st.markdown("""
@@ -508,8 +508,8 @@ if mapping_done_flag:
 
     mouse_atlas = tb.atlas.fetch_mouse_atlas(region_type=region_type)
     human_atlas = tb.atlas.fetch_human_atlas(atlas_type=atlas_flag,region_type = region_type)
-    mouse_template = image.load_img('../transbrain/atlas/p56_atlas.nii.gz')
-    human_template = image.load_img('../transbrain/atlas/mni152nlin6_res-2x2x2_t1w.nii.gz')
+    mouse_template = image.load_img('./transbrain/atlas/p56_atlas.nii.gz')
+    human_template = image.load_img('./transbrain/atlas/mni152nlin6_res-2x2x2_t1w.nii.gz')
 
     if direction == 'mouse to human':
         st.markdown("### Visualization of Input Data")
