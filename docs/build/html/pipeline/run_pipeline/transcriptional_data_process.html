@@ -1,0 +1,769 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jupyter pipeline to preprocess all transcriptional dataset &mdash; TransBrain 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e031e9a9"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            TransBrain
+              <img src="../../_static/logo_final.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Setup &amp; Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#installation-options">Installation Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#python-dependencies">Python Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#unit-test">Unit Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user.html#id2">Online Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user.html#id3">General Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user.html#id4">Advanced Use</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../atlas.html">Supported Atlases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../atlas.html#human-brain-atlases">Human Brain Atlases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../atlas.html#mouse-brain-atlas">Mouse Brain Atlas</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../methods/method_glossory.html">Method Glossory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../methods/method_glossory.html#datasets">Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../methods/method_glossory.html#methods-or-concepts">Methods or Concepts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../online_mapping.html">Online Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html">Basic use 1: Mouse to human</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Step-1:-Prepare-input-data">Step 1: Prepare input data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Visualizing-mouse-phenotype-data">Visualizing mouse phenotype data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Step-2:-Initialization">Step 2: Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Step-3:-Mapping">Step 3: Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html">Basic use 2: Human to mouse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Step-1:-Prepare-input-data">Step 1: Prepare input data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Visualizing-human-phenotype-data">Visualizing human phenotype data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Step-2:-Initialization">Step 2: Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Step-3:-Mapping">Step 3: Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html">Case 1: Analyzing the conservation of resting-fMRI gradients</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Mapping-mouse-gradient-to-human">Mapping mouse gradient to human</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Compare-with-human-Gradient">Compare with human Gradient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Cross-species-correlation">Cross-species correlation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html">Case 2: Annotating optogenetic circuits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Translating-mouse-stimulated-pattern-to-human">Translating mouse stimulated pattern to human</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Annotating-using-NeuroSynth.">Annotating using NeuroSynth.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/notebooks/translation/autism_mutation/gene_mutations.html">Case 3: Linking gene mutations to imaging phenotype deviations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Translating-mouse-mutation-patterns-to-human">Translating mouse mutation patterns to human</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Calculate-individual-gene-risk-score">Calculate individual gene risk score</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../building.html">Advanced Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="integration.html">Transcriptional Data Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#Introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="integration.html#AHBA-data">AHBA data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="integration.html#Human-single-nucleus-data">Human single-nucleus data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="integration.html#Mouse-spatial-transcriptomic-data">Mouse spatial transcriptomic data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#Selection-of-cortical-stable-genes">Selection of cortical stable genes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#Selection-of-subcortical-stable-genes">Selection of subcortical stable genes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#Selection-of-all-stable-genes">Selection of all stable genes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#Thresholds-of-cortex">Thresholds of cortex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#Thresholds-of-subcortex">Thresholds of subcortex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html#Thresholds-of-all">Thresholds of all</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dnn.html">DNN Model Training</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dnn.html#Introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dnn.html#Model-architecture">Model architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dnn.html#Region-specific-embeddings">Region-specific embeddings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graph_embedding.html">Graph-based Random Walk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graph_embedding.html#Introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="graph_embedding.html#Human-diffusion-based-tractography">Human diffusion-based tractography</a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph_embedding.html#Mouse-Tracer">Mouse Tracer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph_embedding.html#Embedding-space-generated-from-Human-Mouse-graph">Embedding space generated from Human-Mouse graph</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="graph_embedding.html#Define-human-and-mouse-ROIs">Define human and mouse ROIs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graph_embedding.html#Load-anatomical-hierachy-constraint-information">Load anatomical hierachy constraint information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../methods/mapping.html">Bidirectional Mapping</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/external_api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/fetch_api.html">Fetching Atlases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/fetch_api.html#transbrain.atlas.fetch_human_atlas"><code class="docutils literal notranslate"><span class="pre">fetch_human_atlas()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/fetch_api.html#transbrain.atlas.fetch_mouse_atlas"><code class="docutils literal notranslate"><span class="pre">fetch_mouse_atlas()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/base_api.html">Base Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/base_api.html#transbrain.base.get_region_phenotypes"><code class="docutils literal notranslate"><span class="pre">get_region_phenotypes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/mapping_api.html">Mapping Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/mapping_api.html#transbrain.trans.SpeciesTrans"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/mapping_api.html#transbrain.trans.SpeciesTrans.atlas_type"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.atlas_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/mapping_api.html#transbrain.trans.SpeciesTrans.regions"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.regions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/mapping_api.html#transbrain.trans.SpeciesTrans.embeddings"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.embeddings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/mapping_api.html#transbrain.trans.SpeciesTrans._load_embeddings"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans._load_embeddings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/mapping_api.html#transbrain.trans.SpeciesTrans._dual_mapping"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans._dual_mapping()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/mapping_api.html#transbrain.trans.SpeciesTrans._translate"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans._translate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/mapping_api.html#transbrain.trans.SpeciesTrans.mouse_to_human"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.mouse_to_human()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/mapping_api.html#transbrain.trans.SpeciesTrans.human_to_mouse"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.human_to_mouse()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/vis_api.html">Visualization Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/vis_api.html#transbrain.vis.map_phenotype_to_nifti"><code class="docutils literal notranslate"><span class="pre">map_phenotype_to_nifti()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/vis_api.html#transbrain.vis.plot_mouse_phenotype"><code class="docutils literal notranslate"><span class="pre">plot_mouse_phenotype()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/vis_api.html#transbrain.vis.plot_human_phenotype"><code class="docutils literal notranslate"><span class="pre">plot_human_phenotype()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/vis_api.html#transbrain.surf.plot_surface_phenotype"><code class="docutils literal notranslate"><span class="pre">plot_surface_phenotype()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/utils.html">Development Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/data_process_api.html">Transcriptional Data Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_qc"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_qc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_normalized"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_normalized()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_common_genes"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_common_genes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_batch_correct"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_batch_correct()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_smooth"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_smooth()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_scaled"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_scaled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.preprocess_pipeline"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.preprocess_pipeline()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/data_integration_api.html">Data Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/data_integration_api.html#pipeline.code.dintegrate.utils.stable_gene_filter"><code class="docutils literal notranslate"><span class="pre">stable_gene_filter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/data_integration_api.html#pipeline.code.dintegrate.utils.calculate_thresholds"><code class="docutils literal notranslate"><span class="pre">calculate_thresholds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator"><code class="docutils literal notranslate"><span class="pre">DataIntegrator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.__init__"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.run"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.pool_construction"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.pool_construction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.clean_pool"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.clean_pool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.weighted_average"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.weighted_average()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.downsample_data"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.downsample_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.generate_integrated_anndata"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.generate_integrated_anndata()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/dnn_api.html">DNN</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.analyzer.calculate_rank"><code class="docutils literal notranslate"><span class="pre">calculate_rank()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.analyzer.transform_human_mouse"><code class="docutils literal notranslate"><span class="pre">transform_human_mouse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.analyzer.independent_test"><code class="docutils literal notranslate"><span class="pre">independent_test()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline"><code class="docutils literal notranslate"><span class="pre">DnnPipeline</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.cfg"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.cfg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.logger"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.logger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.execute"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.train"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.train()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.trans"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.trans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.test"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.test()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline._process_single_dataset"><code class="docutils literal notranslate"><span class="pre">DnnPipeline._process_single_dataset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline._train_single_model"><code class="docutils literal notranslate"><span class="pre">DnnPipeline._train_single_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/graph_walk_api.html">Graph Walk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/graph_walk_api.html#pipeline.code.graph_walk.run.generate_embeddings"><code class="docutils literal notranslate"><span class="pre">generate_embeddings()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing TransBrain</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">TransBrain</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Jupyter pipeline to preprocess all transcriptional dataset</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/pipeline/run_pipeline/transcriptional_data_process.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Jupyter-pipeline-to-preprocess-all-transcriptional-dataset">
+<h1>Jupyter pipeline to preprocess all transcriptional dataset<a class="headerlink" href="#Jupyter-pipeline-to-preprocess-all-transcriptional-dataset" title="Permalink to this heading"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
+
+<span class="k">for</span> <span class="n">sub_folder</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;human_ahba&#39;</span><span class="p">,</span><span class="s1">&#39;human_sn&#39;</span><span class="p">,</span><span class="s1">&#39;mouse_st&#39;</span><span class="p">]:</span>
+
+    <span class="n">savefolder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../datasets/processeddata&#39;</span><span class="p">,</span><span class="n">sub_folder</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">savefolder</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">savefolder</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../code/dpreprocess&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Part1-Preprocessed-single-nucleus-dataset">
+<h1>Part1 Preprocessed single-nucleus dataset<a class="headerlink" href="#Part1-Preprocessed-single-nucleus-dataset" title="Permalink to this heading"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read original single-cell dataset</span>
+<span class="n">human_sn_data_path</span> <span class="o">=</span> <span class="s2">&quot;../datasets/single_nucleus_dataset/Human_sn_data_H1819.h5ad&quot;</span>
+<span class="n">human_sn_data</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">human_sn_data_path</span><span class="p">)</span> <span class="c1"># shape: (2026217, 59480)</span>
+<span class="n">human_sn_data</span> <span class="o">=</span> <span class="n">human_sn_data</span><span class="p">[</span><span class="n">human_sn_data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;donor_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;H19.30.001&#39;</span><span class="p">,</span><span class="s1">&#39;H19.30.002&#39;</span><span class="p">])]</span> <span class="c1"># only use 001 and 002</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">human_sn_data</span> <span class="o">=</span> <span class="n">human_sn_data</span><span class="p">[(</span><span class="n">human_sn_data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dissection&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">QC</span><span class="p">(</span><span class="n">adata</span><span class="p">):</span>
+
+    <span class="n">total_UMI_per_cell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;total_UMIs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_UMI_per_cell</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_cells</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span><span class="n">min_genes</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_genes</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span><span class="n">min_cells</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">adata</span> <span class="o">=</span> <span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">total_UMIs</span><span class="o">&gt;</span><span class="mi">800</span><span class="p">]</span>
+    <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">[:,</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">adata</span>
+
+<span class="n">human_sn_data</span> <span class="o">=</span> <span class="n">QC</span><span class="p">(</span><span class="n">human_sn_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H1901_adata</span>  <span class="o">=</span> <span class="n">human_sn_data</span><span class="p">[(</span><span class="n">human_sn_data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;donor_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;H19.30.001&#39;</span><span class="p">)]</span>
+<span class="n">H1901_region</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">H1901_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dissection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">H1902_adata</span>  <span class="o">=</span> <span class="n">human_sn_data</span><span class="p">[(</span><span class="n">human_sn_data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;donor_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;H19.30.002&#39;</span><span class="p">)]</span>
+<span class="n">H1902_region</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">H1902_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dissection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Split dataset to H1901 and H1902 and save common regions</span>
+<span class="n">human_sn_data</span><span class="o">.</span><span class="n">var_names</span> <span class="o">=</span> <span class="n">human_sn_data</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">Gene</span>
+<span class="n">H1901_adata</span>  <span class="o">=</span> <span class="n">human_sn_data</span><span class="p">[(</span><span class="n">human_sn_data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;donor_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;H19.30.001&#39;</span><span class="p">)]</span>
+<span class="n">H1901_region</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">H1901_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dissection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">H1902_adata</span>  <span class="o">=</span> <span class="n">human_sn_data</span><span class="p">[(</span><span class="n">human_sn_data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;donor_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;H19.30.002&#39;</span><span class="p">)]</span>
+<span class="n">H1902_region</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">H1902_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dissection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">H19_region</span> <span class="o">=</span> <span class="p">[</span><span class="n">region</span> <span class="k">for</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">H1901_region</span> <span class="k">if</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">H1902_region</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H1901_adata</span>  <span class="o">=</span> <span class="n">H1901_adata</span><span class="p">[(</span><span class="n">H1901_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dissection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">H19_region</span><span class="p">))]</span>
+<span class="n">H1902_adata</span>  <span class="o">=</span> <span class="n">H1902_adata</span><span class="p">[(</span><span class="n">H1902_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dissection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">H19_region</span><span class="p">))]</span>
+<span class="c1"># del cell-type</span>
+<span class="n">del_cell_type</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Choroid plexus&#39;</span><span class="p">,</span><span class="s1">&#39;Ependymal&#39;</span><span class="p">,</span><span class="s1">&#39;Miscellaneous&#39;</span><span class="p">,</span><span class="s1">&#39;Splatter&#39;</span><span class="p">,</span><span class="s1">&#39;Vascular&#39;</span><span class="p">]</span>
+<span class="n">H1901_adata</span>  <span class="o">=</span> <span class="n">H1901_adata</span><span class="p">[</span><span class="o">~</span><span class="p">(</span><span class="n">H1901_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;supercluster_term&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">del_cell_type</span><span class="p">))]</span>
+<span class="n">H1902_adata</span>  <span class="o">=</span> <span class="n">H1902_adata</span><span class="p">[</span><span class="o">~</span><span class="p">(</span><span class="n">H1902_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;supercluster_term&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">del_cell_type</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cross-donor correlations below the threshold (0.6) or those with more than a tenfold difference in cell counts.</span>
+<span class="n">drop_region</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Thalamus (THM) - Anterior nuclear complex - ANC&#39;</span><span class="p">,</span> <span class="s1">&#39;Myelencephalon (medulla oblongata) (Mo) - afferent nuclei of cranial nerves in medulla oblongata - MoAN&#39;</span><span class="p">,</span> <span class="s1">&#39;Amygdaloid complex (AMY) - basolateral nuclear group (BLN) - basomedial nucleus (accessory basal nucleus) - BM&#39;</span><span class="p">,</span> <span class="s1">&#39;Paleocortex (PalCx) - Piriform cortex - Pir&#39;</span><span class="p">,</span> <span class="s1">&#39;Tail of Hippocampus (HiT) - Subicular cortex - Sub&#39;</span><span class="p">,</span> <span class="s1">&#39;Thalamus (THM) - intralaminar nuclear complex (ILN) - posterior group of intralaminar nuclei (PILN) - centromedian and parafasicular nuclei - CM and Pf&#39;</span><span class="p">,</span> <span class="s1">&#39;Thalamus (THM) - posterior nuclear complex of thalamus (PoN) - medial geniculate nuclei (MG)&#39;</span><span class="p">,</span> <span class="s1">&#39;Extended amygdala (EXA) - Bed nucleus of stria terminalis and nearby - BNST&#39;</span><span class="p">,</span> <span class="s1">&#39;Body of hippocampus (HiB) - Rostral CA1-CA3&#39;</span><span class="p">,</span> <span class="s1">&#39;Amygdaloid complex (AMY) - basolateral nuclear group (BLN) - basolateral nucleus (basal nucleus) - BL&#39;</span><span class="p">,</span> <span class="s1">&#39;Pons (Pn) - other nuclei in pontine tegmentum (XPnTg) - dorsal tegmental nucleus - DTg&#39;</span><span class="p">,</span> <span class="s1">&#39;Basal nuclei (BN) - Globus pallidus (GP) - Internal segment of globus pallidus - GPi&#39;</span><span class="p">,</span> <span class="s1">&#39;Amygdaloid complex (AMY) - corticomedial nuclear group - CMN&#39;</span><span class="p">,</span> <span class="s1">&#39;Pons (Pn) - afferent nuclei of cranial nerves in pons - PnAN&#39;</span><span class="p">,</span> <span class="s1">&#39;Basal forebrain (BF) - septal nuclei - SEP&#39;</span><span class="p">,</span> <span class="s1">&#39;Midbrain (M) - Pretectal region - PTR&#39;</span><span class="p">,</span> <span class="s1">&#39;Head of hippocampus (HiH) - Uncal DG-CA4&#39;</span><span class="p">,</span> <span class="s1">&#39;Paleocortex (PalCx) - Anterior Olfactory Nucleus - AON&#39;</span><span class="p">,</span> <span class="s1">&#39;Body of hippocampus (HiB) - Rostral DG-CA4&#39;</span><span class="p">,</span> <span class="s1">&#39;Amygdaloid complex (AMY) - Central nuclear group - CEN&#39;</span><span class="p">,</span> <span class="s1">&#39;Tail of Hippocampus (HiT) - Caudal Hippocampus - CA4-DGC&#39;</span><span class="p">,</span> <span class="s1">&#39;Hypothalamus (HTH) - preoptic region of HTH - HTHpo (medial preoptic nucleus, MPN) - supraoptic region of HTH - HTHso (paraventricular nucleus, PV)&#39;</span><span class="p">,</span> <span class="s1">&#39;Hypothalamus (HTH) - mammillary region of HTH (HTHma) - mammillary nucleus - MN&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H1901_adata</span> <span class="o">=</span> <span class="n">H1901_adata</span><span class="p">[</span><span class="o">~</span><span class="n">H1901_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dissection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">drop_region</span><span class="p">)]</span>
+<span class="n">H1902_adata</span> <span class="o">=</span> <span class="n">H1902_adata</span><span class="p">[</span><span class="o">~</span><span class="n">H1902_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dissection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">drop_region</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H1901_adata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;../datasets/single_nucleus_dataset/Human_sn_data_H19001.h5ad&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H1902_adata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;../datasets/single_nucleus_dataset/Human_sn_data_H19002.h5ad&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+! run_sn.py</section>
+<section id="Part2-Preprocessed-AHBA-dataset">
+<h1>Part2 Preprocessed AHBA dataset<a class="headerlink" href="#Part2-Preprocessed-AHBA-dataset" title="Permalink to this heading"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ex_scaled</span><span class="p">(</span><span class="n">ex_d_sample</span><span class="p">):</span>
+    <span class="n">ex_d_sample_adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">ex_d_sample</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">ex_d_sample_adata</span><span class="p">,</span><span class="n">max_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ex_d_sample_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ex_d_sample_adata</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="n">ex_d_sample</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span> <span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="n">ex_d_sample</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ex_d_sample_scaled</span>
+</pre></div>
+</div>
+</div>
+<section id="Human-brain-atlas-used-in-our-study">
+<h2>Human brain atlas used in our study<a class="headerlink" href="#Human-brain-atlas-used-in-our-study" title="Permalink to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ahba_</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_AHBA_data</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_d_sample_brain_atlas</span> <span class="o">=</span> <span class="n">extract_AHBA_data</span><span class="p">(</span><span class="s1">&#39;../../transbrain/atlas/bn_atlas_2mm_symmetry.nii.gz&#39;</span><span class="p">,</span><span class="s1">&#39;../../transbrain/atlas/bn_atlas.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_d_sample_brain_atlas_concat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">ex_d_sample_brain_atlas</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Human_127_info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../transbrain/atlas/bn_atlas.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cortex_regions</span> <span class="o">=</span> <span class="n">Human_127_info</span><span class="p">[</span><span class="s1">&#39;Anatomical Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">105</span><span class="p">]</span>
+<span class="n">subcortex_regions</span> <span class="o">=</span> <span class="n">Human_127_info</span><span class="p">[</span><span class="s1">&#39;Anatomical Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">105</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_d_sample_brain_atlas_cortex</span> <span class="o">=</span> <span class="n">ex_d_sample_brain_atlas_concat</span><span class="p">[</span><span class="n">ex_d_sample_brain_atlas_concat</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cortex_regions</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_d_sample_brain_atlas_subcortex</span> <span class="o">=</span> <span class="n">ex_d_sample_brain_atlas_concat</span><span class="p">[</span><span class="n">ex_d_sample_brain_atlas_concat</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">subcortex_regions</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_d_sample_brain_atlas_concat</span> <span class="o">=</span> <span class="n">ex_scaled</span><span class="p">(</span><span class="n">ex_d_sample_brain_atlas_concat</span><span class="p">)</span>
+<span class="n">ex_d_sample_brain_atlas_cortex</span> <span class="o">=</span> <span class="n">ex_scaled</span><span class="p">(</span><span class="n">ex_d_sample_brain_atlas_cortex</span><span class="p">)</span>
+<span class="n">ex_d_sample_brain_atlas_subcortex</span> <span class="o">=</span> <span class="n">ex_scaled</span><span class="p">(</span><span class="n">ex_d_sample_brain_atlas_subcortex</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_d_sample_brain_atlas_concat</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../datasets/processeddata/human_ahba/ex_d_sample_brain_atlas.csv&#39;</span><span class="p">)</span>
+<span class="n">ex_d_sample_brain_atlas_cortex</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../datasets/processeddata/human_ahba/ex_d_sample_brain_atlas_cortex.csv&#39;</span><span class="p">)</span>
+<span class="n">ex_d_sample_brain_atlas_subcortex</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../datasets/processeddata/human_ahba/ex_d_sample_brain_atlas_subcortex.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">ex_</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;ex_d_sample_brain_atlas_mean.csv&#39;</span><span class="p">,</span><span class="s1">&#39;ex_d_sample_brain_atlas_cortex_mean.csv&#39;</span><span class="p">,</span><span class="s1">&#39;ex_d_sample_brain_atlas_subcortex_mean.csv&#39;</span><span class="p">],</span>
+                       <span class="p">[</span><span class="n">ex_d_sample_brain_atlas_concat</span><span class="p">,</span><span class="n">ex_d_sample_brain_atlas_cortex</span><span class="p">,</span><span class="n">ex_d_sample_brain_atlas_subcortex</span><span class="p">]):</span>
+    <span class="n">ex_mean</span> <span class="o">=</span> <span class="n">ex_</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">ex_</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">ex_mean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../datasets/processeddata/human_ahba/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s_name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generate_independent_dataset</span><span class="p">(</span><span class="n">ex_d_sample_brain_atlas</span><span class="p">,</span> <span class="n">cortex_regions</span><span class="p">,</span> <span class="n">type_</span><span class="o">=</span><span class="s1">&#39;cortex&#39;</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s1">&#39;../datasets/processeddata/human_ahba/independent_dataset&#39;</span><span class="p">)</span>
+<span class="n">generate_independent_dataset</span><span class="p">(</span><span class="n">ex_d_sample_brain_atlas</span><span class="p">,</span> <span class="n">subcortex_regions</span><span class="p">,</span> <span class="n">type_</span><span class="o">=</span><span class="s1">&#39;subcortex&#39;</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s1">&#39;../datasets/processeddata/human_ahba/independent_dataset&#39;</span><span class="p">)</span>
+<span class="n">generate_independent_dataset</span><span class="p">(</span><span class="n">ex_d_sample_brain_atlas</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">ex_d_sample_brain_atlas_concat</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="n">type_</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s1">&#39;../datasets/processeddata/human_ahba/independent_dataset&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Human-sn-atlas">
+<h2>Human sn atlas<a class="headerlink" href="#Human-sn-atlas" title="Permalink to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_d_sample_sn_atlas</span> <span class="o">=</span> <span class="n">extract_AHBA_data</span><span class="p">(</span><span class="s1">&#39;../../transBrain/atlas/allensn_atlas_2mm.nii.gz&#39;</span><span class="p">,</span><span class="s1">&#39;../../transbrain/atlas/sn_atlas.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Human_sn_atlas_csv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../transbrain/atlas/sn_atlas.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_d_sample_sn_atlas_concat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">ex_d_sample_sn_atlas</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cortex_regions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ex_d_sample_sn_atlas_concat</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">ex_d_sample_sn_atlas_concat</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;Cerebral cortex&#39;</span><span class="p">)]))</span>
+<span class="n">subcortex_regions</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Human_sn_atlas_csv</span><span class="p">[</span><span class="s1">&#39;Anatomical Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cortex_regions</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_d_sample_sn_atlas_concat</span> <span class="o">=</span> <span class="n">ex_d_sample_sn_atlas_concat</span><span class="p">[</span><span class="n">ex_d_sample_sn_atlas_concat</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cortex_regions</span><span class="o">+</span><span class="n">subcortex_regions</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_d_sample_sn_atlas_cortex</span> <span class="o">=</span> <span class="n">ex_d_sample_sn_atlas_concat</span><span class="p">[</span><span class="n">ex_d_sample_sn_atlas_concat</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cortex_regions</span><span class="p">)]</span>
+<span class="n">ex_d_sample_sn_atlas_subcortex</span> <span class="o">=</span> <span class="n">ex_d_sample_sn_atlas_concat</span><span class="p">[</span><span class="n">ex_d_sample_sn_atlas_concat</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">subcortex_regions</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_d_sample_sn_atlas_concat</span> <span class="o">=</span> <span class="n">ex_scaled</span><span class="p">(</span><span class="n">ex_d_sample_sn_atlas_concat</span><span class="p">)</span>
+<span class="n">ex_d_sample_sn_atlas_cortex</span> <span class="o">=</span> <span class="n">ex_scaled</span><span class="p">(</span><span class="n">ex_d_sample_sn_atlas_cortex</span><span class="p">)</span>
+<span class="n">ex_d_sample_sn_atlas_subcortex</span> <span class="o">=</span> <span class="n">ex_scaled</span><span class="p">(</span><span class="n">ex_d_sample_sn_atlas_subcortex</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">ex_</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;ex_d_sample_sn_atlas_mean.csv&#39;</span><span class="p">,</span><span class="s1">&#39;ex_d_sample_sn_atlas_cortex_mean.csv&#39;</span><span class="p">,</span><span class="s1">&#39;ex_d_sample_sn_atlas_subcortex_mean.csv&#39;</span><span class="p">],</span>
+                       <span class="p">[</span><span class="n">ex_d_sample_sn_atlas_concat</span><span class="p">,</span><span class="n">ex_d_sample_sn_atlas_cortex</span><span class="p">,</span><span class="n">ex_d_sample_sn_atlas_subcortex</span><span class="p">]):</span>
+    <span class="n">ex_mean</span> <span class="o">=</span> <span class="n">ex_</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">ex_</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">ex_mean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../datasets/processeddata/human_ahba/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s_name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Part3-Preprocessed-Mouse-ST-dataset">
+<h1>Part3 Preprocessed Mouse ST dataset<a class="headerlink" href="#Part3-Preprocessed-Mouse-ST-dataset" title="Permalink to this heading"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;../datasets/mouse_dataset/Mouse_ST_adata_normalized.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_adata</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+AnnData object with n_obs × n_vars = 34053 × 15324
+    obs: &#39;section_index&#39;, &#39;stereo_ML&#39;, &#39;stereo_DV&#39;, &#39;stereo_AP&#39;, &#39;HE_X&#39;, &#39;HE_Y&#39;, &#39;ABA_acronym&#39;, &#39;ABA_name&#39;, &#39;ABA_parent&#39;, &#39;nuclei_segmented&#39;, &#39;spot_radius&#39;, &#39;passed_QC&#39;, &#39;cluster_id&#39;, &#39;cluster_name&#39;, &#39;Region&#39;
+    var: &#39;Gene&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">homo_gene</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./files/hm_homo_gene.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_var_names</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">mouse_gene</span> <span class="ow">in</span> <span class="n">mouse_adata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;Gene&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">mouse_gene</span> <span class="ow">in</span> <span class="n">homo_gene</span><span class="p">[</span><span class="s1">&#39;10090&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+        <span class="n">sc_gene</span> <span class="o">=</span> <span class="n">homo_gene</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">homo_gene</span><span class="p">[</span><span class="s1">&#39;10090&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">mouse_gene</span><span class="p">,</span> <span class="s1">&#39;9606&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">new_var_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sc_gene</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">new_var_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mouse_gene</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_adata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;Gene&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_var_names</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">duplicate_mask</span> <span class="o">=</span> <span class="n">mouse_adata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;Gene&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_adata</span> <span class="o">=</span> <span class="n">mouse_adata</span><span class="p">[:,</span><span class="o">~</span><span class="n">duplicate_mask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cortex_region</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">mouse_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">mouse_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;ABA_parent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Isocortex&#39;</span><span class="p">][</span><span class="s1">&#39;Region&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_adata_cortex</span> <span class="o">=</span> <span class="n">mouse_adata</span><span class="p">[</span><span class="n">mouse_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Region&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cortex_region</span><span class="p">)]</span>
+<span class="n">mouse_adata_subcortex</span> <span class="o">=</span> <span class="n">mouse_adata</span><span class="p">[</span><span class="o">~</span><span class="n">mouse_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Region&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cortex_region</span><span class="p">)]</span>
+<span class="n">mouse_adata_subcortex</span> <span class="o">=</span> <span class="n">mouse_adata_subcortex</span><span class="p">[</span><span class="n">mouse_adata_subcortex</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Region&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;other&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">mouse_adata</span><span class="p">,</span><span class="n">max_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">mouse_adata_cortex</span><span class="p">,</span><span class="n">max_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">mouse_adata_subcortex</span><span class="p">,</span><span class="n">max_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_adata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;../datasets/processeddata/mouse_st/Mouse_adata_preprocessed.h5ad&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_adata_cortex</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;../datasets/processeddata/mouse_st/Mouse_adata_cortex_preprocessed.h5ad&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_adata_subcortex</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;../datasets/processeddata/mouse_st/Mouse_adata_subcortex_preprocessed.h5ad&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, TransBrain.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

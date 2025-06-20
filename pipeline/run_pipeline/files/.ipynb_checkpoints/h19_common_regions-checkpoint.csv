@@ -1,0 +1,79 @@
+,sn_rois
+0,Basal nuclei (BN) - Body of the Caudate - CaB
+1,Myelencephalon (medulla oblongata) (Mo) - sensory relay nuclei in medulla oblongata - MoSR
+2,Midbrain (M) - Pretectal region - PTR
+3,Body of hippocampus (HiB) - Rostral CA1-CA3
+4,Thalamus (THM) - medial nuclear complex of thalamus (MNC) - mediodorsal nucleus of thalamus - MD
+5,Pons (Pn) - other nuclei in pontine tegmentum (XPnTg) - dorsal tegmental nucleus - DTg
+6,Thalamus (THM) - lateral nuclear complex of thalamus (LNC) - lateral posterior nucleus of thalamus - LP
+7,Amygdaloid complex (AMY) - basolateral nuclear group (BLN) - basomedial nucleus (accessory basal nucleus) - BM
+8,Claustrum - Cla
+9,Cerebral cortex (Cx) - Posterior intermediate orbital gyrus (POrG) - Caudal division of OFCi - A13
+10,"Cerebral cortex (Cx) - Cingulate gyrus, rostral (CgGr) - Ventral division of MFC - A24"
+11,Basal nuclei (BN) - Globus pallidus (GP) - Internal segment of globus pallidus - GPi
+12,Cerebral cortex (Cx) - Inferior frontal gyrus (IFG) - Ventrolateral prefrontal cortex - A44-A45
+13,Cerebral cortex (Cx) - Inferior temporal gyrus - ITG
+14,Pons (Pn) - Pontine Nucleus - PN
+15,Cerebral cortex (Cx) - Postcentral gyrus (PoCG) - Primary somatosensory cortex - S1C
+16,Cerebral cortex (Cx) - Parietal operculum (PaO) - Gustatory cortex - A43
+17,Thalamus (THM) - Subthalamic nucleus and nearby - STH
+18,Thalamus (THM) - lateral nuclear complex of thalamus (LNC) - Pulvinar of thalamus - Pul
+19,Cerebral cortex (Cx) - Posterior parahippocampal gyrus (PPH) - TH-TL
+20,Cerebellum (CB) - Lateral hemisphere of cerebellum - CBL
+21,Cerebral cortex (Cx) - Caudal cingulate gyrus (CgGC) - A23
+22,Tail of Hippocampus (HiT) - Caudal Hippocampus - CA1-CA3
+23,Midbrain (M) - Inferior colliculus and nearby nuclei - IC
+24,Cerebral cortex (Cx) - Superior Temporal Gyrus - STG
+25,Thalamus (THM) - intralaminar nuclear complex (ILN) - posterior group of intralaminar nuclei (PILN) - centromedian and parafasicular nuclei - CM and Pf
+26,Amygdaloid complex (AMY) - Basolateral nuclear group (BLN) - lateral nucleus - La
+27,Cerebral cortex (Cx) - Temporal pole (TP) - Temporopolar area - A38
+28,Cerebral cortex (Cx) - Transverse temporal gyrus (TTG) - Primary auditory cortex - A1C
+29,Cerebral cortex (Cx) - Middle Temporal Gyrus - MTG
+30,"Cerebral cortex (Cx) - Cingulate gyrus, retrosplenial (CgGrs) - A29-A30"
+31,Extended amygdala (EXA) - Bed nucleus of stria terminalis and nearby - BNST
+32,Thalamus (THM) - Lateral nuclear complex of thalamus (LNC) - ventral group of lateral nucleus - VLN
+33,Thalamus (THM) - Anterior nuclear complex - ANC
+34,Cerebellum (CB) - Cerebellar deep nuclei - CbDN
+35,Body of hippocampus (HiB) - Rostral DG-CA4
+36,Cerebral cortex (Cx) - Precentral gyrus (PrCG) - Primary motor cortex - M1C
+37,Basal forebrain (BF) - septal nuclei - SEP
+38,"Hypothalamus (HTH) - preoptic region of HTH - HTHpo (medial preoptic nucleus, MPN) - supraoptic region of HTH - HTHso (paraventricular nucleus, PV)"
+39,Thalamus (THM) - posterior nuclear complex of thalamus (PoN) - lateral geniculate nucleus (LG)
+40,Cerebral cortex (Cx) - Subcallosal Gyrus (SCG) - Subgenual (subcallosal) division of MFC - A25
+41,Cerebral cortex (Cx) - Anterior parahippocampal gyrus (AG) - Lateral entorhinal cortex - LEC
+42,"Cerebral cortex (Cx) - Cuneus, caudal part - Peristriate Cortex - V2"
+43,"Cerebral cortex (Cx) - Anterior parahippocampal gyrus, posterior part (APH) - Medial entorhinal cortex - MEC"
+44,Midbrain (M) - Substantia Nigra - SN
+45,Cerebral cortex (Cx) - Long insular gyri (LIG) - Dysgranular insular cortex - Idg
+46,"Cerebral cortex (Cx) - Occipitotemporal (fusiform) gyrus, temporal part (FuGt) - Temporal area TF"
+47,Paleocortex (PalCx) - Anterior Olfactory Nucleus - AON
+48,Amygdaloid complex (AMY) - Central nuclear group - CEN
+49,Basal nuclei (BN) - Putamen - Pu
+50,Cerebral cortex (Cx) - Middle frontal gyrus (MFG) - A46
+51,Basal nuclei (BN) - Globus pallidus (GP) - External segment of globus pallidus - GPe
+52,Epithalamus - ETH
+53,Paleocortex (PalCx) - Piriform cortex - Pir
+54,Basal nuclei (BN) - Nucleus Accumbens - NAC
+55,Midbrain (M) - Superior colliculus and nearby nuclei - SC
+56,Cerebral cortex (Cx) - Frontal agranular insular cortex - FI
+57,Head of hippocampus (HiH) - Uncal CA1-CA3
+58,Myelencephalon (medulla oblongata) (Mo) - precerebellar nuclei (PrCbN) - inferior olive - IO
+59,Amygdaloid complex (AMY) - corticomedial nuclear group - CMN
+60,Cerebral cortex (Cx) - Superior occipital gyrus (SOG) - Areas 19 and MT - A19
+61,Basal forebrain (BF) - substantia innominata and nearby nuclei - SI
+62,"Cerebral cortex (Cx) - Cuneus, rostral part - Area Prostriata - Pro"
+63,Cerebral cortex (Cx) - Short insular gyri - Granular insular cortex - Ig
+64,Pons (Pn) - afferent nuclei of cranial nerves in pons - PnAN
+65,Head of hippocampus (HiH) - Uncal DG-CA4
+66,Tail of Hippocampus (HiT) - Caudal Hippocampus - CA4-DGC
+67,Tail of Hippocampus (HiT) - Subicular cortex - Sub
+68,Amygdaloid complex (AMY) - basolateral nuclear group (BLN) - basolateral nucleus (basal nucleus) - BL
+69,Pons (Pn) - Pontine reticular formation - PnRF
+70,Cerebral cortex (Cx) - Lingual gyrus (LiG) - Primary Visual Cortex - V1C
+71,Cerebral cortex (Cx) - Supramarginal gyrus (SMG) - A40
+72,Cerebellum (CB) - Cerebellar Vermis - CBV
+73,Hypothalamus (HTH) - mammillary region of HTH (HTHma) - mammillary nucleus - MN
+74,Pons (Pn) - efferent nuclei of cranial nerves in pons - PnEN
+75,Thalamus (THM) - posterior nuclear complex of thalamus (PoN) - medial geniculate nuclei (MG)
+76,Myelencephalon (medulla oblongata) (Mo) - afferent nuclei of cranial nerves in medulla oblongata - MoAN
+77,Cerebral cortex (Cx) - Supraparietal lobule (SPL) - Posterosuperior (dorsal) parietal cortex - A5-A7

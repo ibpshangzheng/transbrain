@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Use &mdash; TransBrain 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Transcriptional Data Integration" href="pipeline/run_pipeline/integration.html" />
+    <link rel="prev" title="Case 3: Linking gene mutations to imaging phenotype deviations" href="tutorials/notebooks/translation/autism_mutation/gene_mutations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TransBrain
+              <img src="_static/logo_final.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Setup &amp; Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-options">Installation Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#python-dependencies">Python Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#unit-test">Unit Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id2">Online Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id3">General Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id4">Advanced Use</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="atlas.html">Supported Atlases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="atlas.html#human-brain-atlases">Human Brain Atlases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atlas.html#mouse-brain-atlas">Mouse Brain Atlas</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="methods/method_glossory.html">Method Glossory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="methods/method_glossory.html#datasets">Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methods/method_glossory.html#methods-or-concepts">Methods or Concepts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="online_mapping.html">Online Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html">Basic use 1: Mouse to human</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Step-1:-Prepare-input-data">Step 1: Prepare input data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Visualizing-mouse-phenotype-data">Visualizing mouse phenotype data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Step-2:-Initialization">Step 2: Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Step-3:-Mapping">Step 3: Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html">Basic use 2: Human to mouse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Step-1:-Prepare-input-data">Step 1: Prepare input data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Visualizing-human-phenotype-data">Visualizing human phenotype data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Step-2:-Initialization">Step 2: Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Step-3:-Mapping">Step 3: Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html">Case 1: Analyzing the conservation of resting-fMRI gradients</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Mapping-mouse-gradient-to-human">Mapping mouse gradient to human</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Compare-with-human-Gradient">Compare with human Gradient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Cross-species-correlation">Cross-species correlation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html">Case 2: Annotating optogenetic circuits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Translating-mouse-stimulated-pattern-to-human">Translating mouse stimulated pattern to human</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Annotating-using-NeuroSynth.">Annotating using NeuroSynth.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/translation/autism_mutation/gene_mutations.html">Case 3: Linking gene mutations to imaging phenotype deviations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Translating-mouse-mutation-patterns-to-human">Translating mouse mutation patterns to human</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Calculate-individual-gene-risk-score">Calculate individual gene risk score</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pipeline/run_pipeline/integration.html">Transcriptional Data Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/run_pipeline/integration.html#Introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pipeline/run_pipeline/integration.html#AHBA-data">AHBA data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pipeline/run_pipeline/integration.html#Human-single-nucleus-data">Human single-nucleus data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pipeline/run_pipeline/integration.html#Mouse-spatial-transcriptomic-data">Mouse spatial transcriptomic data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/run_pipeline/integration.html#Selection-of-cortical-stable-genes">Selection of cortical stable genes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/run_pipeline/integration.html#Selection-of-subcortical-stable-genes">Selection of subcortical stable genes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/run_pipeline/integration.html#Selection-of-all-stable-genes">Selection of all stable genes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/run_pipeline/integration.html#Thresholds-of-cortex">Thresholds of cortex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/run_pipeline/integration.html#Thresholds-of-subcortex">Thresholds of subcortex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/run_pipeline/integration.html#Thresholds-of-all">Thresholds of all</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline/run_pipeline/dnn.html">DNN Model Training</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/run_pipeline/dnn.html#Introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pipeline/run_pipeline/dnn.html#Model-architecture">Model architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pipeline/run_pipeline/dnn.html#Region-specific-embeddings">Region-specific embeddings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline/run_pipeline/graph_embedding.html">Graph-based Random Walk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/run_pipeline/graph_embedding.html#Introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pipeline/run_pipeline/graph_embedding.html#Human-diffusion-based-tractography">Human diffusion-based tractography</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pipeline/run_pipeline/graph_embedding.html#Mouse-Tracer">Mouse Tracer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pipeline/run_pipeline/graph_embedding.html#Embedding-space-generated-from-Human-Mouse-graph">Embedding space generated from Human-Mouse graph</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/run_pipeline/graph_embedding.html#Define-human-and-mouse-ROIs">Define human and mouse ROIs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/run_pipeline/graph_embedding.html#Load-anatomical-hierachy-constraint-information">Load anatomical hierachy constraint information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="methods/mapping.html">Bidirectional Mapping</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/external_api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/fetch_api.html">Fetching Atlases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/fetch_api.html#transbrain.atlas.fetch_human_atlas"><code class="docutils literal notranslate"><span class="pre">fetch_human_atlas()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/fetch_api.html#transbrain.atlas.fetch_mouse_atlas"><code class="docutils literal notranslate"><span class="pre">fetch_mouse_atlas()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/base_api.html">Base Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/base_api.html#transbrain.base.get_region_phenotypes"><code class="docutils literal notranslate"><span class="pre">get_region_phenotypes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/mapping_api.html">Mapping Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/mapping_api.html#transbrain.trans.SpeciesTrans"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/mapping_api.html#transbrain.trans.SpeciesTrans.atlas_type"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.atlas_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/mapping_api.html#transbrain.trans.SpeciesTrans.regions"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.regions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/mapping_api.html#transbrain.trans.SpeciesTrans.embeddings"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.embeddings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/mapping_api.html#transbrain.trans.SpeciesTrans._load_embeddings"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans._load_embeddings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/mapping_api.html#transbrain.trans.SpeciesTrans._dual_mapping"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans._dual_mapping()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/mapping_api.html#transbrain.trans.SpeciesTrans._translate"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans._translate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/mapping_api.html#transbrain.trans.SpeciesTrans.mouse_to_human"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.mouse_to_human()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/mapping_api.html#transbrain.trans.SpeciesTrans.human_to_mouse"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.human_to_mouse()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/vis_api.html">Visualization Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/vis_api.html#transbrain.vis.map_phenotype_to_nifti"><code class="docutils literal notranslate"><span class="pre">map_phenotype_to_nifti()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/vis_api.html#transbrain.vis.plot_mouse_phenotype"><code class="docutils literal notranslate"><span class="pre">plot_mouse_phenotype()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/vis_api.html#transbrain.vis.plot_human_phenotype"><code class="docutils literal notranslate"><span class="pre">plot_human_phenotype()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/vis_api.html#transbrain.surf.plot_surface_phenotype"><code class="docutils literal notranslate"><span class="pre">plot_surface_phenotype()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/utils.html">Development Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/data_process_api.html">Transcriptional Data Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_qc"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_qc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_normalized"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_normalized()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_common_genes"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_common_genes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_batch_correct"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_batch_correct()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_smooth"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_smooth()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_scaled"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_scaled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.preprocess_pipeline"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.preprocess_pipeline()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/data_integration_api.html">Data Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/data_integration_api.html#pipeline.code.dintegrate.utils.stable_gene_filter"><code class="docutils literal notranslate"><span class="pre">stable_gene_filter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data_integration_api.html#pipeline.code.dintegrate.utils.calculate_thresholds"><code class="docutils literal notranslate"><span class="pre">calculate_thresholds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator"><code class="docutils literal notranslate"><span class="pre">DataIntegrator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.__init__"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.run"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.pool_construction"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.pool_construction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.clean_pool"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.clean_pool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.weighted_average"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.weighted_average()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.downsample_data"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.downsample_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.generate_integrated_anndata"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.generate_integrated_anndata()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/dnn_api.html">DNN</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.analyzer.calculate_rank"><code class="docutils literal notranslate"><span class="pre">calculate_rank()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.analyzer.transform_human_mouse"><code class="docutils literal notranslate"><span class="pre">transform_human_mouse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.analyzer.independent_test"><code class="docutils literal notranslate"><span class="pre">independent_test()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline"><code class="docutils literal notranslate"><span class="pre">DnnPipeline</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.cfg"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.cfg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.logger"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.logger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.execute"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.train"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.train()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.trans"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.trans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.test"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.test()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline._process_single_dataset"><code class="docutils literal notranslate"><span class="pre">DnnPipeline._process_single_dataset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline._train_single_model"><code class="docutils literal notranslate"><span class="pre">DnnPipeline._train_single_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/graph_walk_api.html">Graph Walk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/graph_walk_api.html#pipeline.code.graph_walk.run.generate_embeddings"><code class="docutils literal notranslate"><span class="pre">generate_embeddings()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing TransBrain</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TransBrain</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Advanced Use</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/building.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="advanced-use">
+<span id="build-method"></span><h1>Advanced Use<a class="headerlink" href="#advanced-use" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>Here we provide a step-by-step guide to follow the TransBrain construction pipeline.</p></li>
+<li><p>If you have more specific needs (such as constructing mapping matrices based on your own data or atlases), this tutorial will help you.</p></li>
+<li><p>On each page you can find a brief introduction of the data and methods, for detailed description please refer to our <a class="reference external" href="https://www.biorxiv.org/content/10.1101/2025.01.27.635016v2.abstract">paper</a>.</p></li>
+<li><p>Due to the large data size, the dataset is not included in the GitHub repository. If needed, you can download it from the link in <code class="docutils literal notranslate"><span class="pre">pipeline/datasets/README.md</span></code> and place it in the same directory.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p><strong>Spatial Transcriptomic Matching</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>We integrated complementary human transcriptomic datasets, including <a class="reference external" href="http://human.brain-map.org">microarray data</a> and large-scale <a class="reference external" href="https://github.com/linnarsson-lab/adult-human-brain?tab=readme-ov-file">single-nucleus RNA sequencing data</a>.</p></li>
+<li><p>A detached deep neural network model was trained on the integrated transcriptomic data to learn region-specific latent embeddings that are generalizable across species.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>Graph-based Random Walk</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>A heterogeneous graph was constructed to connect brain regions within and across species.</p></li>
+<li><p>Latent embeddings capturing integrated transcriptomic, anatomical, and connectivity information were generated.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p><strong>Bidirectional Mapping</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p><a class="reference internal" href="methods/mapping.html"><span class="doc">Dual-regression</span></a> method was employed to map phenotypes cross species, using the latent embeddings defined previously.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pipeline/run_pipeline/integration.html">Transcriptional Data Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline/run_pipeline/dnn.html">DNN Model Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline/run_pipeline/graph_embedding.html">Graph-based Random Walk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods/mapping.html">Bidirectional Mapping</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tutorials/notebooks/translation/autism_mutation/gene_mutations.html" class="btn btn-neutral float-left" title="Case 3: Linking gene mutations to imaging phenotype deviations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pipeline/run_pipeline/integration.html" class="btn btn-neutral float-right" title="Transcriptional Data Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, TransBrain.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
