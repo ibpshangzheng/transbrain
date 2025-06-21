@@ -599,11 +599,11 @@ get_region_phenotypes(phenotype_nii_path: str, atlas_dict: dict, atlas_type: Lit
 
     atlas_type : {&#39;bn&#39;, &#39;dk&#39;, &#39;aal&#39;,&#39;mouse}, optional
         The type of atlas. Must be one of:
-        - &#39;bn&#39;  : Brainnetome Atlas
+
+        - &#39;bn&#39;  : Brainnetome Atlas (default)
         - &#39;dk&#39;  : Desikan-Killiany Atlas
         - &#39;aal&#39; : Automated Anatomical Labeling (AAL) Atlas
         - &#39;mouse&#39; : Allen Mouse CCFv3 atlas
-        Default is &#39;bn&#39;.
 
     region_type : {&#39;cortex&#39;, &#39;subcortex&#39;, &#39;all&#39;}, optional
         Which regions to include in returned region names and info table: cortical, subcortical, or all. Default is &#39;all&#39;.
@@ -908,6 +908,14 @@ INFO:root:Successfully translated human all phenotypes to mouse.
       <td>...</td>
     </tr>
     <tr>
+      <th>MTN</th>
+      <td>0.696940</td>
+    </tr>
+    <tr>
+      <th>ILM</th>
+      <td>0.688615</td>
+    </tr>
+    <tr>
       <th>GENv</th>
       <td>0.638572</td>
     </tr>
@@ -918,14 +926,6 @@ INFO:root:Successfully translated human all phenotypes to mouse.
     <tr>
       <th>RT</th>
       <td>0.640975</td>
-    </tr>
-    <tr>
-      <th>MOs</th>
-      <td>0.434217</td>
-    </tr>
-    <tr>
-      <th>VISam</th>
-      <td>0.389529</td>
     </tr>
   </tbody>
 </table>

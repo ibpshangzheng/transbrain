@@ -33,11 +33,11 @@ def get_region_phenotypes(phenotype_nii_path: str, atlas_dict: dict, atlas_type:
 
     atlas_type : {'bn', 'dk', 'aal','mouse}, optional
         The type of atlas. Must be one of:
-        - 'bn'  : Brainnetome Atlas
+        
+        - 'bn'  : Brainnetome Atlas (default)
         - 'dk'  : Desikan-Killiany Atlas
         - 'aal' : Automated Anatomical Labeling (AAL) Atlas
         - 'mouse' : Allen Mouse CCFv3 atlas
-        Default is 'bn'.
 
     region_type : {'cortex', 'subcortex', 'all'}, optional
         Which regions to include in returned region names and info table: cortical, subcortical, or all. Default is 'all'.

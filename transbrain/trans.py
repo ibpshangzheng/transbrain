@@ -6,7 +6,7 @@ from typing import Literal
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import MinMaxScaler
 from transbrain.config import Config
-
+import copy
 
 logging.basicConfig(level=logging.INFO)
 RegionType = Literal['cortex', 'subcortex', 'all']
@@ -163,19 +163,19 @@ class SpeciesTrans:
         
         if direction == 'mouse_to_human':
             source_species, target_species = direction.split('_to_')
-            source_regions = self.regions[source_species]
+            source_regions = copy.deepcopy(self.regions[source_species])
 
             for dict_region_type, dict_regions in source_regions.items():
                 #Remove the dropped regions during the graph stage due to clearly incorrect similarity.
                 source_regions[dict_region_type] = [region for region in dict_regions if region not in ['MOs', 'VISam']]
 
             region_data = source_regions[region_type] 
-            target_regions = self.regions[target_species]
+            target_regions = copy.deepcopy(self.regions[target_species])
         else:
             source_species, target_species = direction.split('_to_')
-            source_regions = self.regions[source_species]
+            source_regions = copy.deepcopy(self.regions[source_species])
             region_data = source_regions[region_type]
-            target_regions = self.regions[target_species]
+            target_regions = copy.deepcopy(self.regions[target_species])
 
             for dict_region_type, dict_regions in target_regions.items():
                 target_regions[dict_region_type] = [region for region in dict_regions if region not in ['MOs', 'VISam']] 
@@ -222,6 +222,7 @@ class SpeciesTrans:
             index = target_regions['all']
         
         logging.info(f'Successfully translated {source_species} {region_type} phenotypes to {target_species}.')
+        
         return pd.DataFrame(results, index=index)
 
 
