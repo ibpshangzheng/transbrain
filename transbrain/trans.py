@@ -18,7 +18,7 @@ class SpeciesTrans:
     Parameters
     ----------
     atlas_type : {'bn', 'dk', 'aal'}, optional
-        The type of atlas to load.
+        The type of human atlas used for initialization.
         
         - 'bn'  : Brainnetome Atlas
         - 'dk'  : Desikan-Killiany Atlas
@@ -222,7 +222,7 @@ class SpeciesTrans:
             index = target_regions['all']
         
         logging.info(f'Successfully translated {source_species} {region_type} phenotypes to {target_species}.')
-        
+
         return pd.DataFrame(results, index=index)
 
 

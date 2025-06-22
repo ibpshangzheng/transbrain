@@ -290,7 +290,7 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    atlas_type : {&#39;bn&#39;, &#39;dk&#39;, &#39;aal&#39;}, optional</span>
-<span class="sd">        The type of atlas to load.</span>
+<span class="sd">        The type of human atlas used for initialization.</span>
 <span class="sd">        </span>
 <span class="sd">        - &#39;bn&#39;  : Brainnetome Atlas</span>
 <span class="sd">        - &#39;dk&#39;  : Desikan-Killiany Atlas</span>
@@ -494,7 +494,7 @@
             <span class="n">index</span> <span class="o">=</span> <span class="n">target_regions</span><span class="p">[</span><span class="s1">&#39;all&#39;</span><span class="p">]</span>
         
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Successfully translated </span><span class="si">{</span><span class="n">source_species</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">region_type</span><span class="si">}</span><span class="s1"> phenotypes to </span><span class="si">{</span><span class="n">target_species</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span></div>
 
 

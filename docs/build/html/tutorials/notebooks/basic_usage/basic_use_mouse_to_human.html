@@ -283,7 +283,7 @@
 <p>There are two ways to input data. One is that you already have region-level phenotype data as a <code class="docutils literal notranslate"><span class="pre">CSV</span></code> table which follows the format and region order in the <a class="reference external" href="https://github.com/ibpshangzheng/transbrain/tree/main/transbrain/exampledata">provided template file</a>. The DataFrame contains two columns: <code class="docutils literal notranslate"><span class="pre">['Anatomical</span> <span class="pre">Name',</span> <span class="pre">'Phenotype']</span></code>.</p>
 <p>Here we load the example mouse data table.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -294,7 +294,7 @@
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_phenotype</span>
@@ -302,7 +302,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -383,7 +383,7 @@
 </div>
 <p>Or if you data is volumetric data in <code class="docutils literal notranslate"><span class="pre">.nii</span></code> or <code class="docutils literal notranslate"><span class="pre">.nii.gz</span></code> format that has been aligned to the mouse atlas space. You can use the following functions to extract region-level data. When fetcing atlas, you need to choose the region_type parameter from {‘cortex’, ‘subcortex’, ‘all’}, which controls the regions to include in returned region names and info table.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">transbrain</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tb</span>
@@ -432,7 +432,7 @@ fetch_mouse_atlas(region_type: Literal[&#39;cortex&#39;, &#39;subcortex&#39;, &#
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Fetch mouse atlas</span>
@@ -441,7 +441,7 @@ fetch_mouse_atlas(region_type: Literal[&#39;cortex&#39;, &#39;subcortex&#39;, &#
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_atlas</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
@@ -449,7 +449,7 @@ fetch_mouse_atlas(region_type: Literal[&#39;cortex&#39;, &#39;subcortex&#39;, &#
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -459,7 +459,7 @@ dict_keys([&#39;atlas&#39;, &#39;atlas_data&#39;, &#39;region_info&#39;, &#39;in
 </div>
 <p>The first two items in the returned dictionary are the NIfTI file of the atlas and the array in it, while the next two items store the brain region names and a table containing label values.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_atlas</span><span class="p">[</span><span class="s1">&#39;info_table&#39;</span><span class="p">]</span>
@@ -467,7 +467,7 @@ dict_keys([&#39;atlas&#39;, &#39;atlas_data&#39;, &#39;region_info&#39;, &#39;in
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -556,7 +556,7 @@ dict_keys([&#39;atlas&#39;, &#39;atlas_data&#39;, &#39;region_info&#39;, &#39;in
 </div>
 <p>Next, we use the <code class="docutils literal notranslate"><span class="pre">get_region_phenotypes</span></code> function to calculate regional phenotype data from the image. In addition to the phenotype image and the atlas dictionary, you also need to specify the atlas name and the regions to be extracted.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">get_region_phenotypes</span><span class="p">)</span>
@@ -620,25 +620,25 @@ get_region_phenotypes(phenotype_nii_path: str, atlas_dict: dict, atlas_type: Lit
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get phenotypes in Mouse atlas used in TransBrain</span>
 <span class="n">phenotype_nii_path</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;../../../transbrain/exampledata/mouse/mouse_example_phenotype_data.nii.gz&#39;</span><span class="p">)</span>
-<span class="n">mouse_phenotype_extracted</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">get_region_phenotypes</span><span class="p">(</span><span class="n">phenotype_nii_path</span><span class="p">,</span> <span class="n">atlas_dict</span> <span class="o">=</span> <span class="n">mouse_atlas</span><span class="p">,</span> <span class="n">atlas_type</span><span class="o">=</span><span class="s1">&#39;mouse&#39;</span><span class="p">,</span><span class="n">region_type</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">mouse_phenotype</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">get_region_phenotypes</span><span class="p">(</span><span class="n">phenotype_nii_path</span><span class="p">,</span> <span class="n">atlas_dict</span> <span class="o">=</span> <span class="n">mouse_atlas</span><span class="p">,</span> <span class="n">atlas_type</span><span class="o">=</span><span class="s1">&#39;mouse&#39;</span><span class="p">,</span><span class="n">region_type</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_phenotype_extracted</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_phenotype</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -721,7 +721,7 @@ get_region_phenotypes(phenotype_nii_path: str, atlas_dict: dict, atlas_type: Lit
 <h3>Visualizing mouse phenotype data<a class="headerlink" href="#Visualizing-mouse-phenotype-data" title="Permalink to this heading"></a></h3>
 <p>Using visualization function of TransBrain to view the data.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transbrain.vis</span><span class="w"> </span><span class="kn">import</span> <span class="n">map_phenotype_to_nifti</span><span class="p">,</span> <span class="n">plot_mouse_phenotype</span>
@@ -732,7 +732,7 @@ get_region_phenotypes(phenotype_nii_path: str, atlas_dict: dict, atlas_type: Lit
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># view the image</span>
@@ -754,7 +754,7 @@ get_region_phenotypes(phenotype_nii_path: str, atlas_dict: dict, atlas_type: Lit
 <p>Before starting the mapping, you need to initialize TransBrain by creating an instance of the <code class="docutils literal notranslate"><span class="pre">SpeciesTrans</span></code> class.</p>
 <p>You need to specify which target human brain atlas you want to map to. You can choose <code class="docutils literal notranslate"><span class="pre">atlas_type</span></code> from <code class="docutils literal notranslate"><span class="pre">['bn',</span> <span class="pre">'dk',</span> <span class="pre">'aal']</span></code>. During this process, TransBrain will automatically load the necessary information for the mapping, including the brain region name list and the graph embedding matrix for the selected atlas.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Initialize TransBrain for bn atlas</span>
@@ -775,7 +775,7 @@ INFO:root:Initialized for bn atlas.
 <h2>Step 3: Mapping<a class="headerlink" href="#Step-3:-Mapping" title="Permalink to this heading"></a></h2>
 <p>Now, we can map the mouse phenotype DataFrame (either loaded or extracted) to human brain, you need to choose the regions to map and whether to normalize the data. This step is enabled by default. If your data has already been normalized, you can set it to False.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">Transformer</span><span class="o">.</span><span class="n">mouse_to_human</span><span class="p">)</span>
@@ -812,7 +812,7 @@ mouse_to_human(phenotype: pandas.core.frame.DataFrame, region_type: Literal[&#39
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example from mouse to human</span>
@@ -833,7 +833,7 @@ INFO:root:Successfully translated mouse all phenotypes to human.
 </div>
 <p>Once the mapping is complete, you will see a success message. Let’s take a look at the mapped data. Now, you got the DataFrame that stores the phenotype data corresponding to the Brainnetome atlas.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_phenotype_in_human</span>
@@ -841,7 +841,7 @@ INFO:root:Successfully translated mouse all phenotypes to human.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -869,23 +869,23 @@ INFO:root:Successfully translated mouse all phenotypes to human.
   <tbody>
     <tr>
       <th>A8m</th>
-      <td>-0.036860</td>
+      <td>-0.036852</td>
     </tr>
     <tr>
       <th>A8dl</th>
-      <td>-0.037950</td>
+      <td>-0.037943</td>
     </tr>
     <tr>
       <th>A9l</th>
-      <td>-0.048863</td>
+      <td>-0.048855</td>
     </tr>
     <tr>
       <th>A6dl</th>
-      <td>-0.023963</td>
+      <td>-0.023955</td>
     </tr>
     <tr>
       <th>A6m</th>
-      <td>-0.005832</td>
+      <td>-0.005824</td>
     </tr>
     <tr>
       <th>...</th>
@@ -893,23 +893,23 @@ INFO:root:Successfully translated mouse all phenotypes to human.
     </tr>
     <tr>
       <th>Otha</th>
-      <td>0.286257</td>
+      <td>0.286260</td>
     </tr>
     <tr>
       <th>mPFtha</th>
-      <td>0.568260</td>
+      <td>0.568262</td>
     </tr>
     <tr>
       <th>lPFtha</th>
-      <td>0.224642</td>
+      <td>0.224644</td>
     </tr>
     <tr>
       <th>rTtha</th>
-      <td>0.732512</td>
+      <td>0.732510</td>
     </tr>
     <tr>
       <th>PPtha</th>
-      <td>0.469093</td>
+      <td>0.469096</td>
     </tr>
   </tbody>
 </table>
@@ -918,7 +918,7 @@ INFO:root:Successfully translated mouse all phenotypes to human.
 </div>
 <p>You can also visualize what the mapped data looks like on human brain.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fetch human BN atlas</span>

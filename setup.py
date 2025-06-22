@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="transbrain",  
-    version="1.6.0",        
+    version="1.6.2",        
     author="Shangzheng Huang",
     author_email="huangshangzheng@ibp.ac.cn",
     description="TransBrain is an integrated computational framework for bidirectional translation of brain-wide phenotypes between humans and mice.", 
@@ -22,11 +22,12 @@ setup(
         "scipy==1.10.1",
         "seaborn==0.13.2",
         "six==1.17.0",
+        "tqdm==4.67.1"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
         'License :: OSI Approved :: Apache Software License',
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.8,<=3.11",
 )

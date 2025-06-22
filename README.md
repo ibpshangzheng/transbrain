@@ -48,7 +48,7 @@ conda activate transbrain_env
 
 ## Python Dependencies
 
-The project mainly depends on Python (>= 3.8.5).
+The project mainly depends on Python (3.8 - 3.11).
 
 ```
 matplotlib==3.7.5,
@@ -62,6 +62,7 @@ scikit-learn==1.3.2,
 scipy==1.10.1,
 seaborn==0.13.2,
 six==1.17.0
+tqdm==4.67.1
 ```
 See full list in environment.yml file. 
 

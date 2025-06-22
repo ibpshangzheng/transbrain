@@ -18,7 +18,7 @@ Datasets
 
     
     Human single-nucleus data
-        Single-nucleus RNA sequencing (snRNA-seq) data from human brain tissue provided by the Linnarsson laboratory. This dataset includes single-nucleus transcriptomic data from multiple brain regions of four adult human donors.
+        Single-nucleus RNA sequencing (snRNA-seq) data from human brain tissue provided by the Linnarsson laboratory. This dataset includes single-nucleus transcriptomic data from multiple brain regions of adult human donors.
 
         * link: https://github.com/linnarsson-lab/adult-human-brain?tab=readme-ov-file
         * article: https://www.science.org/doi/abs/10.1126/science.add7046

@@ -36,7 +36,7 @@ You can also create a conda environment from the `environment.yml <https://githu
 Python Dependencies
 -------------------
 
-The project mainly depends on Python (>= 3.8.5). Key dependencies include::
+The project mainly depends on Python (3.8 - 3.11). Key dependencies include::
 
     matplotlib==3.7.5
     matplotlib-inline==0.1.7
@@ -49,6 +49,7 @@ The project mainly depends on Python (>= 3.8.5). Key dependencies include::
     scipy==1.10.1
     seaborn==0.13.2
     six==1.17.0
+    tqdm==4.67.1
 
 See the full list in the `environment.yml <https://github.com/ibpshangzheng/transbrain/blob/main/environment.yml>`_ file.
 
