@@ -1,0 +1,51 @@
+,human_region,mouse_region
+0,A32p,PL
+1,A32sg,PL
+2,A32p,ACAd
+3,A32p,ACAv
+4,A32sg,ACAd
+5,A32sg,ACAv
+6,A24rv,ACAd
+7,A24rv,ACAv
+8,A24cd,ACAd
+9,A24cd,ACAv
+10,A23d,RSPd
+11,A23v,RSPd
+12,A23d,RSPv
+13,A23v,RSPv
+14,A11l,ORBl
+15,A11m,ORBl
+16,A12/47o,ORBl
+17,A12/47l,ORBl
+18,A11l,ORBm
+19,A11m,ORBm
+20,A12/47o,ORBm
+21,A12/47l,ORBm
+22,A11l,ORBvl
+23,A11m,ORBvl
+24,A12/47o,ORBvl
+25,A12/47l,ORBvl
+26,A4hf,MOp
+27,A4t,MOp
+28,A4ul,MOp
+29,A4ll,MOp
+30,A1/2/3ulhf,SSp-ul
+31,A1/2/3tonIa,SSp-m
+32,A1/2/3ll,SSp-ll
+33,A1/2/3tru,SSp-tr
+34,cCunG,VISp
+35,rCunG,VISp
+36,cLinG,VISp
+37,rLinG,VISp
+38,dIa,AId
+39,vIa,AIv
+40,TE1.0 and TE1.2,AUDp
+41,CA4DG,DG
+42,body of caudate,CP
+43,external segment of globus pallidus,PAL
+44,CA1,CA1
+45,subiculum,SUB
+46,CA2CA3,CA2
+47,CA2CA3,CA3
+48,nucleus accumbens,ACB
+49,mPFtha,MED

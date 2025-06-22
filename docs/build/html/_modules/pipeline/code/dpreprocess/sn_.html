@@ -1,0 +1,761 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pipeline.code.dpreprocess.sn_ &mdash; TransBrain 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=e031e9a9"></script>
+      <script src="../../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            TransBrain
+              <img src="../../../../_static/logo_final.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Setup &amp; Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#installation-options">Installation Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#python-dependencies">Python Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#unit-test">Unit Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../user.html#id2">Online Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../user.html#id3">General Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../user.html#id4">Advanced Use</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../atlas.html">Supported Atlases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../atlas.html#human-brain-atlases">Human Brain Atlases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../atlas.html#mouse-brain-atlas">Mouse Brain Atlas</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../methods/method_glossory.html">Method Glossory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../methods/method_glossory.html#datasets">Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../methods/method_glossory.html#methods-or-concepts">Methods or Concepts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../online_mapping.html">Online Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html">Basic use 1: Mouse to human</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Step-1:-Prepare-input-data">Step 1: Prepare input data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Visualizing-mouse-phenotype-data">Visualizing mouse phenotype data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Step-2:-Initialization">Step 2: Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/basic_usage/basic_use_mouse_to_human.html#Step-3:-Mapping">Step 3: Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html">Basic use 2: Human to mouse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Step-1:-Prepare-input-data">Step 1: Prepare input data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Visualizing-human-phenotype-data">Visualizing human phenotype data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Step-2:-Initialization">Step 2: Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/basic_usage/basic_use_human_to_mouse.html#Step-3:-Mapping">Step 3: Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html">Case 1: Analyzing the conservation of resting-fMRI gradients</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Mapping-mouse-gradient-to-human">Mapping mouse gradient to human</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Compare-with-human-Gradient">Compare with human Gradient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/translation/gradient_spectrum/fMRI_gradients.html#Cross-species-correlation">Cross-species correlation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html">Case 2: Annotating optogenetic circuits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Translating-mouse-stimulated-pattern-to-human">Translating mouse stimulated pattern to human</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/translation/optogenetic_annotation/optogenetic_circuits.html#Annotating-using-NeuroSynth.">Annotating using NeuroSynth.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/notebooks/translation/autism_mutation/gene_mutations.html">Case 3: Linking gene mutations to imaging phenotype deviations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Translating-mouse-mutation-patterns-to-human">Translating mouse mutation patterns to human</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/notebooks/translation/autism_mutation/gene_mutations.html#Calculate-individual-gene-risk-score">Calculate individual gene risk score</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../building.html">Advanced Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../pipeline/run_pipeline/integration.html">Transcriptional Data Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../pipeline/run_pipeline/integration.html#Introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../pipeline/run_pipeline/integration.html#AHBA-data">AHBA data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../pipeline/run_pipeline/integration.html#Human-single-nucleus-data">Human single-nucleus data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../pipeline/run_pipeline/integration.html#Mouse-spatial-transcriptomic-data">Mouse spatial transcriptomic data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../pipeline/run_pipeline/integration.html#Selection-of-cortical-stable-genes">Selection of cortical stable genes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../pipeline/run_pipeline/integration.html#Selection-of-subcortical-stable-genes">Selection of subcortical stable genes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../pipeline/run_pipeline/integration.html#Selection-of-all-stable-genes">Selection of all stable genes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../pipeline/run_pipeline/integration.html#Thresholds-of-cortex">Thresholds of cortex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../pipeline/run_pipeline/integration.html#Thresholds-of-subcortex">Thresholds of subcortex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../pipeline/run_pipeline/integration.html#Thresholds-of-all">Thresholds of all</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../pipeline/run_pipeline/dnn.html">DNN Model Training</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../pipeline/run_pipeline/dnn.html#Introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../pipeline/run_pipeline/dnn.html#Model-architecture">Model architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../pipeline/run_pipeline/dnn.html#Region-specific-embeddings">Region-specific embeddings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../pipeline/run_pipeline/graph_embedding.html">Graph-based Random Walk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../pipeline/run_pipeline/graph_embedding.html#Introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../pipeline/run_pipeline/graph_embedding.html#Human-diffusion-based-tractography">Human diffusion-based tractography</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../pipeline/run_pipeline/graph_embedding.html#Mouse-Tracer">Mouse Tracer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../pipeline/run_pipeline/graph_embedding.html#Embedding-space-generated-from-Human-Mouse-graph">Embedding space generated from Human-Mouse graph</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../pipeline/run_pipeline/graph_embedding.html#Define-human-and-mouse-ROIs">Define human and mouse ROIs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../pipeline/run_pipeline/graph_embedding.html#Load-anatomical-hierachy-constraint-information">Load anatomical hierachy constraint information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../methods/mapping.html">Bidirectional Mapping</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/external_api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/fetch_api.html">Fetching Atlases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/fetch_api.html#transbrain.atlas.fetch_human_atlas"><code class="docutils literal notranslate"><span class="pre">fetch_human_atlas()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/fetch_api.html#transbrain.atlas.fetch_mouse_atlas"><code class="docutils literal notranslate"><span class="pre">fetch_mouse_atlas()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/base_api.html">Base Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/base_api.html#transbrain.base.get_region_phenotypes"><code class="docutils literal notranslate"><span class="pre">get_region_phenotypes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/mapping_api.html">Mapping Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/mapping_api.html#transbrain.trans.SpeciesTrans"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/mapping_api.html#transbrain.trans.SpeciesTrans.atlas_type"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.atlas_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/mapping_api.html#transbrain.trans.SpeciesTrans.regions"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.regions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/mapping_api.html#transbrain.trans.SpeciesTrans.embeddings"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.embeddings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/mapping_api.html#transbrain.trans.SpeciesTrans._load_embeddings"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans._load_embeddings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/mapping_api.html#transbrain.trans.SpeciesTrans._dual_mapping"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans._dual_mapping()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/mapping_api.html#transbrain.trans.SpeciesTrans._translate"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans._translate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/mapping_api.html#transbrain.trans.SpeciesTrans.mouse_to_human"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.mouse_to_human()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/mapping_api.html#transbrain.trans.SpeciesTrans.human_to_mouse"><code class="docutils literal notranslate"><span class="pre">SpeciesTrans.human_to_mouse()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/vis_api.html">Visualization Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/vis_api.html#transbrain.vis.map_phenotype_to_nifti"><code class="docutils literal notranslate"><span class="pre">map_phenotype_to_nifti()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/vis_api.html#transbrain.vis.plot_mouse_phenotype"><code class="docutils literal notranslate"><span class="pre">plot_mouse_phenotype()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/vis_api.html#transbrain.vis.plot_human_phenotype"><code class="docutils literal notranslate"><span class="pre">plot_human_phenotype()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/vis_api.html#transbrain.surf.plot_surface_phenotype"><code class="docutils literal notranslate"><span class="pre">plot_surface_phenotype()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/utils.html">Development Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/data_process_api.html">Transcriptional Data Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_qc"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_qc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_normalized"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_normalized()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_common_genes"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_common_genes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_batch_correct"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_batch_correct()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_smooth"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_smooth()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_scaled"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.dataset_scaled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.preprocess_pipeline"><code class="docutils literal notranslate"><span class="pre">Preprocess_Sn.preprocess_pipeline()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/data_integration_api.html">Data Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/data_integration_api.html#pipeline.code.dintegrate.utils.stable_gene_filter"><code class="docutils literal notranslate"><span class="pre">stable_gene_filter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/data_integration_api.html#pipeline.code.dintegrate.utils.calculate_thresholds"><code class="docutils literal notranslate"><span class="pre">calculate_thresholds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator"><code class="docutils literal notranslate"><span class="pre">DataIntegrator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.__init__"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.run"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.pool_construction"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.pool_construction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.clean_pool"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.clean_pool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.weighted_average"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.weighted_average()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.downsample_data"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.downsample_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/data_integration_api.html#pipeline.code.dintegrate.main.DataIntegrator.generate_integrated_anndata"><code class="docutils literal notranslate"><span class="pre">DataIntegrator.generate_integrated_anndata()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/dnn_api.html">DNN</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.analyzer.calculate_rank"><code class="docutils literal notranslate"><span class="pre">calculate_rank()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.analyzer.transform_human_mouse"><code class="docutils literal notranslate"><span class="pre">transform_human_mouse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.analyzer.independent_test"><code class="docutils literal notranslate"><span class="pre">independent_test()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline"><code class="docutils literal notranslate"><span class="pre">DnnPipeline</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.cfg"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.cfg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.logger"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.logger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.execute"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.train"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.train()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.trans"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.trans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline.test"><code class="docutils literal notranslate"><span class="pre">DnnPipeline.test()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline._process_single_dataset"><code class="docutils literal notranslate"><span class="pre">DnnPipeline._process_single_dataset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/dnn_api.html#pipeline.code.dnn.pipeline.DnnPipeline._train_single_model"><code class="docutils literal notranslate"><span class="pre">DnnPipeline._train_single_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/graph_walk_api.html">Graph Walk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/graph_walk_api.html#pipeline.code.graph_walk.run.generate_embeddings"><code class="docutils literal notranslate"><span class="pre">generate_embeddings()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../citing.html">Citing TransBrain</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">TransBrain</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pipeline.code.dpreprocess.sn_</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pipeline.code.dpreprocess.sn_</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- encoding: utf-8 -*-</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">@File    :   preprocess_sn.py</span>
+<span class="sd">@Author  :   shangzhengii</span>
+<span class="sd">@Version :   2.0</span>
+<span class="sd">@Contact :   huangshangzheng@ibp.ac.cn</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">issparse</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup_logger</span><span class="p">():</span>
+
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;sn_preprocess&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="n">ch</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+    <span class="n">ch</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;./logs&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">fh</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;./logs/preprocess_sn_</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">.log&#39;</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ch</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">logger</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">setup_logger</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Preprocess_Sn"><a class="viewcode-back" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Preprocess_Sn</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Preprocessing pipeline for single-nucleus RNA-seq data based on the Scanpy framework.</span>
+
+<span class="sd">    Implements quality control, normalization, batch correction, gene selection,</span>
+<span class="sd">    intra-regional smoothing, and scaling, with optional saving of the processed data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    adata : AnnData, optional</span>
+<span class="sd">        Initial AnnData object containing expression matrix.</span>
+<span class="sd">    min_genes : int, optional</span>
+<span class="sd">        Minimum number of genes expressed per cell (default is 200).</span>
+<span class="sd">    min_cells : int, optional</span>
+<span class="sd">        Minimum number of cells a gene must be expressed in (default is 3).</span>
+<span class="sd">    total_UMIs : int, optional</span>
+<span class="sd">        Minimum total UMI count required per cell (default is 800).</span>
+<span class="sd">    log_base : float, optional</span>
+<span class="sd">        Base of logarithm used in log transformation (default is 2).</span>
+<span class="sd">    target_sum : float, optional</span>
+<span class="sd">        Target total count after normalization (default is 1e4).</span>
+<span class="sd">    exclude_highly_expressed : bool, optional</span>
+<span class="sd">        Whether to exclude highly expressed genes during normalization (default is False).</span>
+<span class="sd">    max_fraction : float, optional</span>
+<span class="sd">        Maximum expression fraction to define &#39;highly expressed&#39; genes (default is 0.05).</span>
+<span class="sd">    n_jobs : int, optional</span>
+<span class="sd">        Number of threads for parallel computation (default is 60).</span>
+<span class="sd">    regress_out : bool, optional</span>
+<span class="sd">        Whether to regress out technical covariates (e.g., total UMIs) (default is False).</span>
+<span class="sd">    combat : bool, optional</span>
+<span class="sd">        Whether to perform batch effect correction using ComBat (default is False).</span>
+<span class="sd">    num_samples : int, optional</span>
+<span class="sd">        Number of resampling iterations for intra-region smoothing (default is None).</span>
+<span class="sd">    max_value : float, optional</span>
+<span class="sd">        Maximum value for scaling (clipping) of gene expression (default is 10).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">adata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">min_genes</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">min_cells</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">total_UMIs</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span><span class="n">log_base</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">target_sum</span><span class="o">=</span><span class="mf">1e4</span><span class="p">,</span><span class="n">exclude_highly_expressed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">max_fraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                 <span class="n">regress_out</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">combat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">num_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">max_value</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">adata</span> <span class="o">=</span> <span class="n">adata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_genes</span> <span class="o">=</span> <span class="n">min_genes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_cells</span> <span class="o">=</span> <span class="n">min_cells</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_UMIs</span> <span class="o">=</span> <span class="n">total_UMIs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_base</span> <span class="o">=</span> <span class="n">log_base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_sum</span> <span class="o">=</span> <span class="n">target_sum</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exclude_highly_expressed</span> <span class="o">=</span> <span class="n">exclude_highly_expressed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_fraction</span> <span class="o">=</span> <span class="n">max_fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regress_out</span> <span class="o">=</span> <span class="n">regress_out</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">combat</span> <span class="o">=</span> <span class="n">combat</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_samples</span> <span class="o">=</span> <span class="n">num_samples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_value</span> <span class="o">=</span> <span class="n">max_value</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">file_path</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load an `.h5ad` file into the `adata` attribute.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        file_path : str</span>
+<span class="sd">            Path to the h5ad file.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+<span class="sd">            Returns the instance to allow method chaining.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading data from </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded data with shape: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<div class="viewcode-block" id="Preprocess_Sn.dataset_qc"><a class="viewcode-back" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_qc">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">dataset_qc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform quality control filtering on the dataset.</span>
+
+<span class="sd">        This function filters cells and genes based on quality metrics:</span>
+<span class="sd">        </span>
+<span class="sd">            - Calculates total UMIs per cell and adds it to `adata.obs`.</span>
+<span class="sd">            - Filters out cells with fewer than `min_genes` expressed genes.</span>
+<span class="sd">            - Filters out genes expressed in fewer than `min_cells` cells.</span>
+<span class="sd">            - Removes cells with total UMIs below a threshold `total_UMIs`.</span>
+<span class="sd">            - Removes genes with zero expression across all remaining cells.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        AnnData</span>
+<span class="sd">            The filtered AnnData object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total_UMI_per_cell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;total_UMIs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_UMI_per_cell</span>
+        <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_cells</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span><span class="n">min_genes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_genes</span><span class="p">)</span>
+        <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_genes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span><span class="n">min_cells</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_cells</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">total_UMIs</span><span class="o">&gt;</span><span class="bp">self</span><span class="o">.</span><span class="n">total_UMIs</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">[:,</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span></div>
+    
+<div class="viewcode-block" id="Preprocess_Sn.dataset_normalized"><a class="viewcode-back" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_normalized">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">dataset_normalized</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Normalize the single-nucleus RNA-seq dataset.</span>
+
+<span class="sd">        This method performs total-count normalization to scale counts per cell </span>
+<span class="sd">        to a common target sum, optionally excluding highly expressed genes, </span>
+<span class="sd">        followed by log-transformation with a specified logarithm base.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        AnnData</span>
+<span class="sd">            The normalized AnnData object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+       
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting normalization...&quot;</span><span class="p">)</span>
+         
+        <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">normalize_total</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span> <span class="n">target_sum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">target_sum</span><span class="p">,</span><span class="n">exclude_highly_expressed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">exclude_highly_expressed</span><span class="p">,</span><span class="n">max_fraction</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_fraction</span><span class="p">)</span>
+        <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">log_base</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Normalization completed successfully&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span></div>
+    
+<div class="viewcode-block" id="Preprocess_Sn.dataset_common_genes"><a class="viewcode-back" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_common_genes">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">dataset_common_genes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">gene_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Filter the dataset to keep only genes common to the provided gene list.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        gene_list : list, optional</span>
+<span class="sd">            List of gene names to intersect with the dataset&#39;s genes. If None,</span>
+<span class="sd">            no filtering is applied (default is None).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        AnnData</span>
+<span class="sd">            The filtered AnnData object containing only the common genes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">gene_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No gene_list provided, skipping gene filtering&quot;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span>
+        
+        <span class="n">initial_genes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">n_vars</span>
+     
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting gene filtering...&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="o">.</span><span class="n">is_unique</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">adata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">[:,</span> <span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span>
+
+        <span class="k">if</span> <span class="n">gene_list</span><span class="p">:</span>
+            <span class="n">sc_gene</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">Gene</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">common_gene</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">sc_gene</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">gene_list</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">adata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">[:,</span><span class="n">common_gene</span><span class="p">]</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gene filtering completed. </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">common_gene</span><span class="p">)</span><span class="si">}</span><span class="s2"> genes retained &quot;</span>
+                       <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">common_gene</span><span class="p">)</span><span class="o">/</span><span class="n">initial_genes</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2"> of original)&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span></div>
+    
+<div class="viewcode-block" id="Preprocess_Sn.dataset_batch_correct"><a class="viewcode-back" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_batch_correct">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">dataset_batch_correct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform batch effect correction.</span>
+<span class="sd">        This includes optional regression of total UMIs and batch correction using Combat.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        AnnData</span>
+<span class="sd">            The AnnData object after batch correction.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting batch effect correction...&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">regress_out</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Regressing out total UMIs...&quot;</span><span class="p">)</span>
+            <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">regress_out</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;total_UMIs&#39;</span><span class="p">],</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Total UMIs regressed out&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combat</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="s1">&#39;donor_id&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">:</span>
+                    
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;&#39;donor_id&#39; not found in obs, skipping Combat&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running Combat correction...&quot;</span><span class="p">)</span>
+                <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">combat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;donor_id&#39;</span><span class="p">,</span> <span class="n">covariates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Combat correction completed&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span></div>
+    
+<div class="viewcode-block" id="Preprocess_Sn.dataset_smooth"><a class="viewcode-back" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_smooth">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">dataset_smooth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform intra-regional gene expression smoothing.</span>
+
+<span class="sd">        For each region, perform smoothing by averaging gene expression over random samples of cells within that region.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        AnnData</span>
+<span class="sd">            The smoothed AnnData object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    
+        <span class="n">initial_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">n_regions</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;dissection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Beginning smoothing for </span><span class="si">{</span><span class="n">n_regions</span><span class="si">}</span><span class="s2"> regions &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;with </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_samples</span><span class="si">}</span><span class="s2"> samples&quot;</span><span class="p">)</span>
+    
+        <span class="n">smooth_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    
+        <span class="n">dissection_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;dissection&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">groups</span>
+    
+        <span class="k">for</span> <span class="n">region</span><span class="p">,</span> <span class="n">indices</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dissection_groups</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> 
+                               <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Smoothing regions&quot;</span><span class="p">):</span>
+            <span class="n">region_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
+            <span class="n">n_cells</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+        
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_samples</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+
+                <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="n">region</span><span class="p">))</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">32</span><span class="p">))</span>
+                <span class="n">samples</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_cells</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n_cells</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_samples</span><span class="p">))</span>
+
+                <span class="k">if</span> <span class="n">issparse</span><span class="p">(</span><span class="n">region_data</span><span class="o">.</span><span class="n">X</span><span class="p">):</span>
+                    <span class="n">smoothed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+                        <span class="n">region_data</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span> 
+                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cells</span><span class="p">)])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">smoothed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">region_data</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">samples</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">smoothed</span> <span class="o">=</span> <span class="n">region_data</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span> <span class="k">if</span> <span class="n">issparse</span><span class="p">(</span><span class="n">region_data</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="k">else</span> <span class="n">region_data</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        
+            <span class="n">smooth_dict</span><span class="p">[</span><span class="n">region</span><span class="p">]</span> <span class="o">=</span> <span class="n">smoothed</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">smooth_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span>
+            <span class="n">var</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+            <span class="n">obs</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+                <span class="s1">&#39;Tissue&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">smooth_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> 
+                                <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">smooth_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+            <span class="p">})</span>
+        <span class="p">)</span>
+    
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Smoothing completed. Shape changed </span><span class="si">{</span><span class="n">initial_shape</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span></div>
+
+<div class="viewcode-block" id="Preprocess_Sn.dataset_scaled"><a class="viewcode-back" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.dataset_scaled">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">dataset_scaled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">cortical_regions</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span><span class="n">subcortical_regions</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span><span class="n">scale_type</span><span class="o">=</span><span class="s1">&#39;split&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Scale gene expression data, optionally splitting into cortical and subcortical regions.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cortical_regions : list, optional</span>
+<span class="sd">            List of cortical region names to subset and scale separately.</span>
+<span class="sd">        subcortical_regions : list, optional</span>
+<span class="sd">            List of subcortical region names to subset and scale separately.</span>
+<span class="sd">        scale_type : {&#39;split&#39;, &#39;global&#39;}, optional</span>
+<span class="sd">            Scaling method to apply. &#39;split&#39; scales cortical and subcortical regions separately,</span>
+<span class="sd">            &#39;global&#39; scales the whole dataset at once. Default is &#39;split&#39;.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        AnnData</span>
+<span class="sd">            The scaled AnnData object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting scaling (type: </span><span class="si">{</span><span class="n">scale_type</span><span class="si">}</span><span class="s2">)...&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">scale_type</span> <span class="o">==</span> <span class="s1">&#39;split&#39;</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Splitting into </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cortical_regions</span><span class="p">)</span><span class="si">}</span><span class="s2"> cortical and &quot;</span>
+                           <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">subcortical_regions</span><span class="p">)</span><span class="si">}</span><span class="s2"> subcortical regions&quot;</span><span class="p">)</span>
+
+            <span class="n">adata_cortical</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">cortical_regions</span><span class="p">))]</span>
+            <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">adata_cortical</span><span class="p">,</span><span class="n">max_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_value</span><span class="p">)</span>
+            <span class="n">adata_subcortical</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">subcortical_regions</span><span class="p">))]</span>
+            <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">adata_subcortical</span><span class="p">,</span><span class="n">max_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_value</span><span class="p">)</span>
+            <span class="n">scaled_adata</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">adata_cortical</span><span class="p">,</span> <span class="n">adata_subcortical</span><span class="p">])</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">adata</span> <span class="o">=</span><span class="n">scaled_adata</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Performing global scaling&quot;</span><span class="p">)</span>
+            <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span><span class="n">max_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span></div>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">dataset_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">save_path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the current AnnData expression matrix to a Feather file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        save_path : str</span>
+<span class="sd">            File path to save the Feather file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Preparing to save data to </span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">save_path</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">gene_info</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span>
+        <span class="n">H_region_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="n">sn_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">gene_info</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+        <span class="n">sn_dataframe</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">H_region_list</span>
+        <span class="n">sn_dataframe</span><span class="o">=</span><span class="n">sn_dataframe</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sn_dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">sn_dataframe</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully saved data to </span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                       <span class="sa">f</span><span class="s2">&quot;Size: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+        
+<div class="viewcode-block" id="Preprocess_Sn.preprocess_pipeline"><a class="viewcode-back" href="../../../../api/data_process_api.html#pipeline.code.dpreprocess.sn_.Preprocess_Sn.preprocess_pipeline">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">preprocess_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">min_genes</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span><span class="n">min_cells</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span><span class="n">total_UMIs</span> <span class="o">=</span> <span class="mi">800</span><span class="p">,</span><span class="n">log_base</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="n">target_sum</span> <span class="o">=</span> <span class="mf">1e4</span><span class="p">,</span><span class="n">exclude_highly_expressed</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span><span class="n">max_fraction</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span><span class="n">regress_out</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span><span class="n">combat</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                            <span class="n">num_samples</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span><span class="n">max_value</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">dataset_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span><span class="n">gene_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">cortical_regions</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">subcortical_regions</span><span class="p">:</span><span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">scale_type</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;split&#39;</span><span class="p">,</span> 
+                            <span class="n">save_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span><span class="n">steps</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preprocess single-nucleus RNA-seq data with flexible pipeline steps.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        adata : AnnData, optional</span>
+<span class="sd">            Input AnnData object (.h5ad) containing single-nucleus data.</span>
+<span class="sd">            If None, data will be loaded from `dataset_path`.</span>
+<span class="sd">        min_genes : int, default=200</span>
+<span class="sd">            Minimum number of genes required per cell. Cells with fewer genes will be filtered out.</span>
+<span class="sd">        min_cells : int, default=3</span>
+<span class="sd">            Minimum number of cells in which a gene must be detected.</span>
+<span class="sd">            Genes detected in fewer cells will be removed.</span>
+<span class="sd">        total_UMIs : int, default=800</span>
+<span class="sd">            Minimum total UMI counts per cell. Cells below this threshold will be filtered out.</span>
+<span class="sd">        log_base : int or float, default=2</span>
+<span class="sd">            Base of logarithm used for log transformation.</span>
+<span class="sd">        target_sum : float, default=1e4</span>
+<span class="sd">            Target sum for count normalization. After normalization, each cell&#39;s counts sum to this value.</span>
+<span class="sd">        exclude_highly_expressed : bool, default=True</span>
+<span class="sd">            Whether to exclude highly expressed genes during normalization to reduce technical artifacts.</span>
+<span class="sd">        max_fraction : float, default=0.05</span>
+<span class="sd">            Maximum fraction of counts that can come from a single gene to consider it for exclusion.</span>
+<span class="sd">        n_jobs : int, default=60</span>
+<span class="sd">            Number of parallel jobs for computation.</span>
+<span class="sd">        regress_out : bool, default=True</span>
+<span class="sd">            Whether to regress out technical covariates (e.g., total counts).</span>
+<span class="sd">        combat : bool, default=False</span>
+<span class="sd">            Whether to apply ComBat batch correction.</span>
+<span class="sd">        num_samples : int, default=100</span>
+<span class="sd">            Number of samples for downsampling/bootstrap during smoothing.</span>
+<span class="sd">        max_value : float, default=10</span>
+<span class="sd">            Maximum clip threshold for transformed values to avoid extreme outliers.</span>
+<span class="sd">        dataset_path : str, optional</span>
+<span class="sd">            Path to the single-nucleus dataset in .h5ad format, used if `adata` is None.</span>
+<span class="sd">        gene_list : list of str, optional</span>
+<span class="sd">            List of common genes to filter on.</span>
+<span class="sd">        cortical_regions : list of str, optional</span>
+<span class="sd">            List of cortical region names in the dataset.</span>
+<span class="sd">        subcortical_regions : list of str, optional</span>
+<span class="sd">            List of subcortical region names in the dataset.</span>
+<span class="sd">        scale_type : {&#39;split&#39;, &#39;all&#39;}, default=&#39;split&#39;</span>
+<span class="sd">            Normalization method for scaling the dataset. &#39;split&#39; scales regions separately,</span>
+<span class="sd">            &#39;all&#39; scales all regions together.</span>
+<span class="sd">        save_path : str, optional</span>
+<span class="sd">            File path to save the processed data.</span>
+<span class="sd">        steps : dict of str to bool, optional</span>
+<span class="sd">            Dictionary controlling execution of processing steps. Keys and defaults:</span>
+<span class="sd">                - &#39;qc&#39; (bool): Quality control (default: True)</span>
+<span class="sd">                - &#39;normalize&#39; (bool): Data normalization (default: True)</span>
+<span class="sd">                - &#39;filter_genes&#39; (bool): Gene filtering (default: True)</span>
+<span class="sd">                - &#39;batch_correct&#39; (bool): Batch effect correction (default: True)</span>
+<span class="sd">                - &#39;smooth&#39; (bool): Data smoothing (default: True)</span>
+<span class="sd">                - &#39;scale&#39; (bool): Region-specific scaling (default: True)</span>
+<span class="sd">                - &#39;save&#39; (bool): Save processed data (default: True)</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Additional optional parameters.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Define preprocessing pipeline&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="n">default_steps</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;qc&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span><span class="s1">&#39;normalize&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span><span class="s1">&#39;filter_genes&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span><span class="s1">&#39;batch_correct&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span><span class="s1">&#39;smooth&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span><span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span><span class="s1">&#39;save&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+            <span class="n">active_steps</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">default_steps</span><span class="p">,</span> <span class="o">**</span><span class="p">(</span><span class="n">steps</span> <span class="ow">or</span> <span class="p">{})}</span>
+
+            <span class="k">if</span> <span class="n">adata</span><span class="p">:</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">Preprocess_Sn</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span><span class="n">min_genes</span> <span class="o">=</span> <span class="n">min_genes</span><span class="p">,</span><span class="n">min_cells</span> <span class="o">=</span> <span class="n">min_cells</span><span class="p">,</span><span class="n">total_UMIs</span> <span class="o">=</span> <span class="n">total_UMIs</span><span class="p">,</span> <span class="n">log_base</span> <span class="o">=</span> <span class="n">log_base</span><span class="p">,</span><span class="n">target_sum</span> <span class="o">=</span> <span class="n">target_sum</span><span class="p">,</span><span class="n">exclude_highly_expressed</span> <span class="o">=</span> <span class="n">exclude_highly_expressed</span><span class="p">,</span>
+                                  <span class="n">max_fraction</span> <span class="o">=</span> <span class="n">max_fraction</span><span class="p">,</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span><span class="p">,</span><span class="n">regress_out</span> <span class="o">=</span> <span class="n">regress_out</span><span class="p">,</span><span class="n">combat</span> <span class="o">=</span> <span class="n">combat</span><span class="p">,</span><span class="n">num_samples</span> <span class="o">=</span> <span class="n">num_samples</span><span class="p">,</span><span class="n">max_value</span> <span class="o">=</span> <span class="n">max_value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">Preprocess_Sn</span><span class="p">(</span><span class="n">min_genes</span> <span class="o">=</span> <span class="n">min_genes</span><span class="p">,</span><span class="n">min_cells</span> <span class="o">=</span> <span class="n">min_cells</span><span class="p">,</span><span class="n">total_UMIs</span> <span class="o">=</span> <span class="n">total_UMIs</span><span class="p">,</span> <span class="n">log_base</span> <span class="o">=</span> <span class="n">log_base</span><span class="p">,</span><span class="n">target_sum</span> <span class="o">=</span> <span class="n">target_sum</span><span class="p">,</span><span class="n">exclude_highly_expressed</span> <span class="o">=</span> <span class="n">exclude_highly_expressed</span><span class="p">,</span>
+                                  <span class="n">max_fraction</span> <span class="o">=</span> <span class="n">max_fraction</span><span class="p">,</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span><span class="p">,</span><span class="n">regress_out</span> <span class="o">=</span> <span class="n">regress_out</span><span class="p">,</span><span class="n">combat</span> <span class="o">=</span> <span class="n">combat</span><span class="p">,</span><span class="n">num_samples</span> <span class="o">=</span> <span class="n">num_samples</span><span class="p">,</span><span class="n">max_value</span> <span class="o">=</span> <span class="n">max_value</span><span class="p">)</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">)</span>
+                
+            <span class="n">active_steps</span><span class="p">[</span><span class="s1">&#39;qc&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">dataset_qc</span><span class="p">()</span>
+            <span class="n">active_steps</span><span class="p">[</span><span class="s1">&#39;normalize&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">dataset_normalized</span><span class="p">()</span>
+            <span class="n">active_steps</span><span class="p">[</span><span class="s1">&#39;filter_genes&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">gene_list</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">dataset_common_genes</span><span class="p">(</span><span class="n">gene_list</span><span class="p">)</span>
+            <span class="n">active_steps</span><span class="p">[</span><span class="s1">&#39;batch_correct&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">dataset_batch_correct</span><span class="p">()</span>
+            <span class="n">active_steps</span><span class="p">[</span><span class="s1">&#39;smooth&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">dataset_smooth</span><span class="p">()</span>
+            <span class="n">active_steps</span><span class="p">[</span><span class="s1">&#39;scale&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">dataset_scaled</span><span class="p">(</span><span class="n">cortical_regions</span> <span class="o">=</span> <span class="n">cortical_regions</span><span class="p">,</span><span class="n">subcortical_regions</span> <span class="o">=</span> <span class="n">subcortical_regions</span><span class="p">,</span><span class="n">scale_type</span><span class="o">=</span><span class="n">scale_type</span><span class="p">)</span>
+            <span class="n">active_steps</span><span class="p">[</span><span class="s1">&#39;save&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">dataset_save</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Preprocessing completed&quot;</span><span class="p">)</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in steps: </span><span class="si">{</span><span class="p">[</span><span class="n">k</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">active_steps</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">v</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span></div></div>
+        
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="kc">None</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, TransBrain.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
