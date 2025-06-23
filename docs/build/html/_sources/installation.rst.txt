@@ -50,6 +50,7 @@ The project mainly depends on Python (3.8 - 3.11). Key dependencies include::
     seaborn==0.13.2
     six==1.17.0
     tqdm==4.67.1
+    ipykernel==6.29.5
 
 See the full list in the `environment.yml <https://github.com/ibpshangzheng/transbrain/blob/main/environment.yml>`_ file.
 

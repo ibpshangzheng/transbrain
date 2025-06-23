@@ -188,7 +188,7 @@ dependencies:
     - tornado==6.4.2
     - tqdm==4.67.1
     - traitlets==5.14.3
-    - transbrain==1.6.2
+    - transbrain==1.8.1
     - triton==3.0.0
     - twine==6.1.0
     - typing-extensions==4.12.2

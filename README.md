@@ -63,6 +63,7 @@ scipy==1.10.1,
 seaborn==0.13.2,
 six==1.17.0
 tqdm==4.67.1
+ipykernel==6.29.5
 ```
 See full list in environment.yml file. 
 
