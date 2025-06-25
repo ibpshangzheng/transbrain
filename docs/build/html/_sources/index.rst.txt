@@ -135,6 +135,6 @@ About
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 🌐 [`GitHub Repository <https://github.com/ibpshangzheng/transbrain>`_]
 - 📦 [`Install from PyPI <https://pypi.org/project/transbrain/>`_] 
-- 📜 [`Our Paper <https://www.biorxiv.org/content/10.1101/2025.01.27.635016v1>`_]
+- 📜 [`Our Preprint <https://www.biorxiv.org/content/10.1101/2025.01.27.635016v1>`_]
 - 📧 For questions, contact the author: Shangzheng Huang (huangshangzheng@ibp.ac.cn) and cc TransBrain (transbrainmapping@gmail.com).
 

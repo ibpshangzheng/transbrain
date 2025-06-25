@@ -91,9 +91,41 @@ class SpeciesTrans:
         """
         with open(Config.embeddings_resources[self.atlas_type], 'rb') as f:
             return pickle.load(f)
+    
+    def _restore_values(self, prediction, phenotype_name, phenotype_data):
+        """
+        Restore the values to the original scale.
+
+        Parameters
+        ----------
+        prediction : np.ndarray
+            The predicted phenotype values after translation.
+        phenotype_name : str
+            The name of the phenotype type.
+        phenotype_data : pd.DataFrame
+            The original phenotype data used for scaling.
+
+        Returns
+        -------
+        np.ndarray
+            The restored phenotype values in the original scale.
+        """
+        # Get the original min and max values of the phenotype data
+        original_min = phenotype_data[phenotype_name].min()
+        original_max = phenotype_data[phenotype_name].max()
+
+        # First, map the prediction to [0, 1] range
+        prediction_min = prediction.min()
+        prediction_max = prediction.max()
+        normalized_prediction = (prediction - prediction_min) / (prediction_max - prediction_min)
+        
+        # Then, reverse the normalization to the original scale [original_min, original_max]
+        restored_prediction = normalized_prediction * (original_max - original_min) + original_min
+
+        return restored_prediction
 
     def _dual_mapping(self, pheno_data: np.ndarray, source_matrix: np.ndarray, 
-                     target_matrix: np.ndarray, normalize: bool = False,restore: bool = False) -> np.ndarray:
+                     target_matrix: np.ndarray, normalize: bool = False) -> np.ndarray:
 
         """
         Map phenotype data from source to target space using dual regression.
@@ -108,30 +140,21 @@ class SpeciesTrans:
             The embedding matrix for the target species.
         normalize : bool, optional
             Whether to normalize the phenotype values before regression. Default is False.
-        restore : bool, optional
-            Whether to inverse-transform the predicted values back to original scale.
-            Only used if `normalize=True`.
 
         Returns
         -------
         np.ndarray
             An array of predicted phenotype values in the target species.
         """
-
-        if restore and not normalize:
-            raise ValueError("Restore requires normalized input.")
             
         y = pheno_data.reshape(-1, 1)
         scaler = MinMaxScaler() if normalize else None
         
         if normalize:
             y = scaler.fit_transform(y)
-        
         model = LinearRegression().fit(source_matrix, y.ravel())
         prediction = model.predict(target_matrix)
-        
-        if restore:
-            return scaler.inverse_transform(prediction.reshape(-1, 1)).ravel()
+
         return prediction
 
     def _translate(self, phenotype: pd.DataFrame, direction: str, region_type: RegionType = 'cortex',
@@ -157,6 +180,9 @@ class SpeciesTrans:
         pd.DataFrame
             Translated phenotype values in the target species, indexed by brain region name.
         """
+        
+        if restore and not normalize:
+            raise ValueError("Restore requires normalized input.")
 
         if direction not in ['human_to_mouse', 'mouse_to_human']:
             raise ValueError("Invalid translation direction.")
@@ -207,10 +233,14 @@ class SpeciesTrans:
             for emb in self.embeddings:
                 src_mat = emb[src_slice]
                 tgt_mat = emb[tgt_slice]
-                pred = self._dual_mapping(arr, src_mat, tgt_mat, normalize, restore)
+                pred = self._dual_mapping(arr, src_mat, tgt_mat, normalize)
                 predictions.append(pred)
                 
             results[phenotype_name] = np.mean(predictions, axis=0)
+            # Restore the values if needed
+            if restore and normalize:
+                results[phenotype_name] = self._restore_values(results[phenotype_name], phenotype_name, phenotype)
+    
         
         if region_type == 'cortex':
             results = {k: v[:len(target_regions['cortex'])] for k, v in results.items()}
@@ -242,7 +272,6 @@ class SpeciesTrans:
             Whether to normalize data before translation. Default is True.
         restore : bool, optional
             Whether to restore values back to original scale after translation. Only used if normalize is True.
-            Please enable this parameter with caution, unless you are certain that the distributions of this phenotype are consistent between the two species.
 
         Returns
         -------
@@ -269,7 +298,6 @@ class SpeciesTrans:
             Whether to normalize data before translation. Default is True.
         restore : bool, optional
             Whether to restore values back to original scale after translation. Only used if normalize is True.
-            Please enable this parameter with caution, unless you are certain that the distributions of this phenotype are consistent between the two species.
 
         Returns
         -------

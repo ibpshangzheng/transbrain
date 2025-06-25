@@ -363,9 +363,41 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">embeddings_resources</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">atlas_type</span><span class="p">],</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></div>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_restore_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prediction</span><span class="p">,</span> <span class="n">phenotype_name</span><span class="p">,</span> <span class="n">phenotype_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restore the values to the original scale.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        prediction : np.ndarray</span>
+<span class="sd">            The predicted phenotype values after translation.</span>
+<span class="sd">        phenotype_name : str</span>
+<span class="sd">            The name of the phenotype type.</span>
+<span class="sd">        phenotype_data : pd.DataFrame</span>
+<span class="sd">            The original phenotype data used for scaling.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            The restored phenotype values in the original scale.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get the original min and max values of the phenotype data</span>
+        <span class="n">original_min</span> <span class="o">=</span> <span class="n">phenotype_data</span><span class="p">[</span><span class="n">phenotype_name</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">original_max</span> <span class="o">=</span> <span class="n">phenotype_data</span><span class="p">[</span><span class="n">phenotype_name</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+        <span class="c1"># First, map the prediction to [0, 1] range</span>
+        <span class="n">prediction_min</span> <span class="o">=</span> <span class="n">prediction</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">prediction_max</span> <span class="o">=</span> <span class="n">prediction</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">normalized_prediction</span> <span class="o">=</span> <span class="p">(</span><span class="n">prediction</span> <span class="o">-</span> <span class="n">prediction_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">prediction_max</span> <span class="o">-</span> <span class="n">prediction_min</span><span class="p">)</span>
+        
+        <span class="c1"># Then, reverse the normalization to the original scale [original_min, original_max]</span>
+        <span class="n">restored_prediction</span> <span class="o">=</span> <span class="n">normalized_prediction</span> <span class="o">*</span> <span class="p">(</span><span class="n">original_max</span> <span class="o">-</span> <span class="n">original_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">original_min</span>
+
+        <span class="k">return</span> <span class="n">restored_prediction</span>
 
 <div class="viewcode-block" id="SpeciesTrans._dual_mapping"><a class="viewcode-back" href="../../api/mapping_api.html#transbrain.trans.SpeciesTrans._dual_mapping">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">_dual_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pheno_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">source_matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
-                     <span class="n">target_matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span><span class="n">restore</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+                     <span class="n">target_matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Map phenotype data from source to target space using dual regression.</span>
@@ -380,30 +412,21 @@
 <span class="sd">            The embedding matrix for the target species.</span>
 <span class="sd">        normalize : bool, optional</span>
 <span class="sd">            Whether to normalize the phenotype values before regression. Default is False.</span>
-<span class="sd">        restore : bool, optional</span>
-<span class="sd">            Whether to inverse-transform the predicted values back to original scale.</span>
-<span class="sd">            Only used if `normalize=True`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        np.ndarray</span>
 <span class="sd">            An array of predicted phenotype values in the target species.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">restore</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">normalize</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Restore requires normalized input.&quot;</span><span class="p">)</span>
             
         <span class="n">y</span> <span class="o">=</span> <span class="n">pheno_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span> <span class="k">if</span> <span class="n">normalize</span> <span class="k">else</span> <span class="kc">None</span>
         
         <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
             <span class="n">y</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-        
         <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">source_matrix</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
         <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">target_matrix</span><span class="p">)</span>
-        
-        <span class="k">if</span> <span class="n">restore</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">prediction</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
         <span class="k">return</span> <span class="n">prediction</span></div>
 
 <div class="viewcode-block" id="SpeciesTrans._translate"><a class="viewcode-back" href="../../api/mapping_api.html#transbrain.trans.SpeciesTrans._translate">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">_translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phenotype</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">region_type</span><span class="p">:</span> <span class="n">RegionType</span> <span class="o">=</span> <span class="s1">&#39;cortex&#39;</span><span class="p">,</span>
@@ -429,6 +452,9 @@
 <span class="sd">        pd.DataFrame</span>
 <span class="sd">            Translated phenotype values in the target species, indexed by brain region name.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">restore</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">normalize</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Restore requires normalized input.&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">direction</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;human_to_mouse&#39;</span><span class="p">,</span> <span class="s1">&#39;mouse_to_human&#39;</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid translation direction.&quot;</span><span class="p">)</span>
@@ -479,10 +505,14 @@
             <span class="k">for</span> <span class="n">emb</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">:</span>
                 <span class="n">src_mat</span> <span class="o">=</span> <span class="n">emb</span><span class="p">[</span><span class="n">src_slice</span><span class="p">]</span>
                 <span class="n">tgt_mat</span> <span class="o">=</span> <span class="n">emb</span><span class="p">[</span><span class="n">tgt_slice</span><span class="p">]</span>
-                <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dual_mapping</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">src_mat</span><span class="p">,</span> <span class="n">tgt_mat</span><span class="p">,</span> <span class="n">normalize</span><span class="p">,</span> <span class="n">restore</span><span class="p">)</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dual_mapping</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">src_mat</span><span class="p">,</span> <span class="n">tgt_mat</span><span class="p">,</span> <span class="n">normalize</span><span class="p">)</span>
                 <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
                 
             <span class="n">results</span><span class="p">[</span><span class="n">phenotype_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="c1"># Restore the values if needed</span>
+            <span class="k">if</span> <span class="n">restore</span> <span class="ow">and</span> <span class="n">normalize</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">[</span><span class="n">phenotype_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_restore_values</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">phenotype_name</span><span class="p">],</span> <span class="n">phenotype_name</span><span class="p">,</span> <span class="n">phenotype</span><span class="p">)</span>
+    
         
         <span class="k">if</span> <span class="n">region_type</span> <span class="o">==</span> <span class="s1">&#39;cortex&#39;</span><span class="p">:</span>
             <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">target_regions</span><span class="p">[</span><span class="s1">&#39;cortex&#39;</span><span class="p">])]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
@@ -514,7 +544,6 @@
 <span class="sd">            Whether to normalize data before translation. Default is True.</span>
 <span class="sd">        restore : bool, optional</span>
 <span class="sd">            Whether to restore values back to original scale after translation. Only used if normalize is True.</span>
-<span class="sd">            Please enable this parameter with caution, unless you are certain that the distributions of this phenotype are consistent between the two species.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -541,7 +570,6 @@
 <span class="sd">            Whether to normalize data before translation. Default is True.</span>
 <span class="sd">        restore : bool, optional</span>
 <span class="sd">            Whether to restore values back to original scale after translation. Only used if normalize is True.</span>
-<span class="sd">            Please enable this parameter with caution, unless you are certain that the distributions of this phenotype are consistent between the two species.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

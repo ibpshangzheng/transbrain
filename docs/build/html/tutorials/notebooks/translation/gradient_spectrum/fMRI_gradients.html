@@ -287,7 +287,7 @@
 </ul>
 <p>Import necessary dependencies.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -305,7 +305,7 @@
 </div>
 <p>First, we need to fetch the mouse brain atlas, which will be used in later steps to extract phenotypes. Set region_type to ‘cortex’ as we are extracting the regional value of cortical gradient.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_atlas</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">atlas</span><span class="o">.</span><span class="n">fetch_mouse_atlas</span><span class="p">(</span><span class="n">region_type</span><span class="o">=</span><span class="s1">&#39;cortex&#39;</span><span class="p">)</span>
@@ -314,7 +314,7 @@
 </div>
 <p>We will load the pre-saved gradient files from the tutorial directory to extract the regional phenotypes. The gradient was calculated based on the awake mouse resting-state fMRI data from <a class="reference external" href="https://data.mendeley.com/datasets/np2fx99hn6/2/">this dataset</a>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transbrain.vis</span><span class="w"> </span><span class="kn">import</span> <span class="n">map_phenotype_to_nifti</span><span class="p">,</span> <span class="n">plot_mouse_phenotype</span>
@@ -336,7 +336,7 @@ Resampling to match atlas...
 </div>
 <p>Now we got the mouse regional gradient DataFrame, we can take a look at it.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># map the region-level phenotype data to an image</span>
@@ -359,7 +359,7 @@ Resampling to match atlas...
 <h2>Mapping mouse gradient to human<a class="headerlink" href="#Mapping-mouse-gradient-to-human" title="Permalink to this heading"></a></h2>
 <p>Before starting the mapping, we need to initialize TransBrain by creating an instance of the <code class="docutils literal notranslate"><span class="pre">SpeciesTrans</span></code> class. Here, we choose the BN (Brainnetome) atlas as the target space for mapping.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Transformer</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">trans</span><span class="o">.</span><span class="n">SpeciesTrans</span><span class="p">(</span><span class="s1">&#39;bn&#39;</span><span class="p">)</span>
@@ -376,7 +376,7 @@ INFO:root:Initialized for bn atlas.
 </div>
 <p>Use <code class="docutils literal notranslate"><span class="pre">mouse_to_human</span></code> function to conduct mapping.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gradient_trans_in_human</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">mouse_to_human</span><span class="p">(</span><span class="n">mouse_gradient</span><span class="p">,</span><span class="n">region_type</span><span class="o">=</span><span class="s1">&#39;cortex&#39;</span><span class="p">)</span>
@@ -393,7 +393,7 @@ INFO:root:Successfully translated mouse cortex phenotypes to human.
 </div>
 <p>Then we got the mouse gradient mapped to human.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gradient_trans_in_human</span>
@@ -401,7 +401,7 @@ INFO:root:Successfully translated mouse cortex phenotypes to human.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -481,7 +481,7 @@ INFO:root:Successfully translated mouse cortex phenotypes to human.
 <h2>Compare with human Gradient<a class="headerlink" href="#Compare-with-human-Gradient" title="Permalink to this heading"></a></h2>
 <p>Next, we load the real Gradient 2 computed on human resting-state fMRI (based on <a class="reference external" href="https://www.humanconnectome.org/study/hcp-young-adult/data-releases">HCP Young Adult Data Release</a>) and analyze the cross-species conservation of it.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fetch human atlas</span>
@@ -493,7 +493,7 @@ INFO:root:Successfully translated mouse cortex phenotypes to human.
 </div>
 <p>View human gradient on surface</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transbrain.surf</span><span class="w"> </span><span class="kn">import</span> <span class="n">BN_region_to_vertex</span><span class="p">,</span> <span class="n">plot_surface_phenotype</span>
@@ -532,7 +532,7 @@ INFO:root:Successfully translated mouse cortex phenotypes to human.
 <h2>Cross-species correlation<a class="headerlink" href="#Cross-species-correlation" title="Permalink to this heading"></a></h2>
 <p>With the help of TransBrain, now we can calculate correlation coefficient and check the conservation of resting-fMRI gradients across species. We can find that the pattern of this gradient is significantly correlated across species.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">human_gradient_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">human_gradient</span><span class="p">))</span>

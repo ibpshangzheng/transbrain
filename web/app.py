@@ -258,7 +258,19 @@ st.sidebar.markdown(
     '<div style="font-size: 1em; font-weight: bold; margin-bottom: 6px;">Step 8: Normalization Option</div>',
     unsafe_allow_html=True
 )
-normalize_input = st.sidebar.checkbox("Normalize Input", value=True)
+st.sidebar.markdown(
+        """
+        <div style="font-size: 0.9em; color: gray; margin-top: 6px; margin-bottom: 15px;">
+            Whether to apply Z-score normalization to the output. If not enabled, the mapped phenotype will retain the source distribution.
+        </div>
+        """,unsafe_allow_html=True)
+
+normalize_option = st.sidebar.checkbox("Z-score output", value=True)
+
+if normalize_option == True:
+    restore_flag = False
+else:
+    restore_flag = True
 
 
 # Step 9: Start mapping
@@ -288,14 +300,14 @@ if st.sidebar.button("9. Start Mapping"):
             result_df = Transformer.human_to_mouse(
                 data_df,
                 region_type=region_type,
-                normalize=normalize_input
+                restore=restore_flag
             )
             suffix = f"human_{human_atlas_choose}_{region_type}_to_mouse_CCF"
         else:
             result_df = Transformer.mouse_to_human(
                 data_df,
                 region_type=region_type,
-                normalize=normalize_input
+                restore=restore_flag
             )
             suffix = f"mouse_CCF_{region_type}_to_human_{human_atlas_choose}"
 
@@ -303,8 +315,9 @@ if st.sidebar.button("9. Start Mapping"):
         output_filename = f"{prefix}_{suffix}.csv"
 
         #zscore results
-        numeric_cols = result_df.select_dtypes(include=['number']).columns
-        result_df[numeric_cols] = result_df[numeric_cols].apply(zscore)
+        if normalize_option:
+            numeric_cols = result_df.select_dtypes(include=['number']).columns
+            result_df[numeric_cols] = result_df[numeric_cols].apply(zscore)
 
         csv_buffer = io.StringIO()
         result_df.to_csv(csv_buffer)
@@ -335,7 +348,7 @@ st.image("./figure/fig1.png", caption="TransBrain framework")
 
 
 st.markdown("""
-### What can TransBrain do?
+### What can TransBrain be used for?
 
 1. Analyzing the conservation of whole-brain phenotypes.
 2. Transforming and annotating whole-brain functional circuits.
@@ -348,7 +361,6 @@ st.markdown("""
 - This website provides a code-free demonstration platform for TransBrain, enabling users to directly upload your data for online mapping and visualization. 
 - Supported data formats include ``CSV`` tables and ``NII`` images. For the latter, TransBrain will extract regional phenotypes based on the atlas selected by the user.
 - You can follow the step-by-step instructions from in the left sidebar to complete the mapping process.
-- If your data has already been normalized, you can uncheck the `Normalize` option.
 - When the sidebar shows "Mapping Completed", the results will be visualized at the bottom of the main page. Rendering process may take a few minutes, when it's finshed, you can download the mapped `CSV` table and `nii.gz` file in MNI152 volume space.
 - If you are interested in our approach or wish to explore the tool further, please visit the GitHub repository or documentation links below for detailed instructions on setting up your TransBrain environment and accessing detailed tutorials.
         
@@ -357,7 +369,7 @@ st.markdown("""
 
 ##### Human Brain Atlases:
                    
-We currently provide the following the options. The naming of regions in the Brainnetome (BN) atlas are defined based on the anatomical locations from [Brodmann atlas](https://en.wikipedia.org/wiki/Brodmann_area). You can check the correspondence in the BN website or in this [table](https://github.com/ibpshangzheng/Transbrain/blob/main/TransBrain/Atlas/BNA_subregions.xlsx) to help understand. For subcortical regions, we adopted a [hybrid approach (22 ROIs)](https://github.com/ibpshangzheng/Transbrain/tree/main/Tutorials/Atlas) that integrates the Brainnetome Atlas, the [Allen Brain Atlas](https://community.brain-map.org/t/allen-human-reference-atlas-3d-2020-new/405), and [public manual delineations](https://www.sciencedirect.com/science/article/abs/pii/S1053811913001237?via%3Dihub).
+We currently provide the following the options. The naming of regions in the Brainnetome (BN) atlas are defined based on the anatomical locations from [Brodmann atlas](https://en.wikipedia.org/wiki/Brodmann_area). You can check the correspondence in the BN website or in this [table](https://docs.google.com/spreadsheets/d/1dN6-CuPVPBUtfBX02TfaqatTBAp1FmLM/edit?usp=sharing&ouid=109641219031090954426&rtpof=true&sd=true) to help understand. For subcortical regions, we adopted a [hybrid approach (22 ROIs)](https://github.com/ibpshangzheng/transbrain/tree/main/transbrain/atlas) that integrates the Brainnetome Atlas, the [Allen Brain Atlas](https://community.brain-map.org/t/allen-human-reference-atlas-3d-2020-new/405), and [public manual delineations](https://www.sciencedirect.com/science/article/abs/pii/S1053811913001237?via%3Dihub).
 
 - [BN (Brainnetome Atlas)](https://atlas.brainnetome.org/)
 - [DK (Desikan-Killiany Atlas)](https://surfer.nmr.mgh.harvard.edu/fswiki/CorticalParcellation)
@@ -372,7 +384,7 @@ We currently provide the following the options. The naming of regions in the Bra
 
 - If you upload volumetric data in ``.nii`` or ``.nii.gz`` format, make sure that it has been aligned to the atlas space required by TransBrain. (Download template and example data to check)      
 - If you upload tables, please **strictly follow** the format and region order in the provided template file. Mapping will **fail** if the structure is incorrect.
-- For detailed atlases information, please refer to our [paper](https://www.biorxiv.org/content/10.1101/2025.01.27.635016v1) and [transbrain/atlas](https://github.com/ibpshangzheng/transbrain/tree/main/transbrain/atlas)
+- For detailed atlases information, please refer to our [preprint](https://www.biorxiv.org/content/10.1101/2025.01.27.635016v1) and [transbrain/atlas](https://github.com/ibpshangzheng/transbrain/tree/main/transbrain/atlas)
 - Support for additional atlases will be expanded in future updates.
 """)
 
@@ -384,7 +396,7 @@ st.markdown("""
 - 🌐 [GitHub Repository](https://github.com/ibpshangzheng/transbrain)
 - 📦 [Install from PyPI](https://pypi.org/project/transbrain/)  
 - 📄 [Documentation](https://transbrain.readthedocs.io/en/latest/)
-- 📜 [Our Paper](https://www.biorxiv.org/content/10.1101/2025.01.27.635016v1)
+- 📜 [Our Preprint](https://www.biorxiv.org/content/10.1101/2025.01.27.635016v1)
 - 📧 For questions, contact the author: Shangzheng Huang (huangshangzheng@ibp.ac.cn) and cc TransBrain (transbrainmapping@gmail.com)
 """)
 
@@ -396,9 +408,6 @@ import tempfile
 from nilearn.image import resample_img
 
 def map_phenotype_to_nifti(phenotype_df, atlas_dict):
-    """
-    Fast version: fully vectorized.
-    """
 
     info_table = atlas_dict['info_table']
     label_img = atlas_dict['atlas']
@@ -438,9 +447,6 @@ def map_phenotype_to_nifti(phenotype_df, atlas_dict):
     return phenotype_img
 
 def map_mouse_phenotype_to_nifti(phenotype_df, info_table,label_img):
-    """
-    Fast version: fully vectorized.
-    """
 
     label_data = label_img.get_fdata().astype(int)
     new_header = label_img.header.copy()
@@ -545,7 +551,7 @@ if mapping_done_flag:
             display = plotting.plot_stat_map(
                 source_img, bg_img=mouse_template, display_mode='y',
                 cut_coords=range(-3, 3, 1), cmap='coolwarm',
-                draw_cross=False, annotate=True)
+                draw_cross=False, annotate=True, symmetric_cbar = True)
             plt.savefig(buf, format='png', bbox_inches='tight')
             plt.close()
             buf.seek(0)
@@ -556,11 +562,13 @@ if mapping_done_flag:
         with st.spinner('Rendering...'):
             result_df.reset_index(inplace=True)
             result_df.columns = [['Anatomical Name','Phenotype']]
-
+            # Avoid zero-value brain regions being recognized as background in visualization by adding a small value.
+            numeric_cols = result_df.select_dtypes(include=['number']).columns
+            result_df[numeric_cols] = result_df[numeric_cols].mask(result_df[numeric_cols] == 0, 1e-5)
             target_img = map_phenotype_to_nifti(result_df, human_atlas)
             
             buf2 = BytesIO()
-            display2 = plotting.plot_stat_map(target_img,cmap='coolwarm',cut_coords=range(-20,40,10),display_mode='z',black_bg=True)
+            display2 = plotting.plot_stat_map(target_img,cmap='coolwarm',cut_coords=range(-20,40,10),display_mode='z',black_bg=True,symmetric_cbar = True)
             plt.savefig(buf2, format='png', bbox_inches='tight')
             plt.close()
             buf2.seek(0)
@@ -577,7 +585,7 @@ if mapping_done_flag:
             source_img = map_phenotype_to_nifti(data_df, human_atlas)
 
             buf2 = BytesIO()
-            display2 = plotting.plot_stat_map(source_img,cmap='coolwarm',cut_coords=range(-20,40,10),display_mode='z',black_bg=True)
+            display2 = plotting.plot_stat_map(source_img,cmap='coolwarm',cut_coords=range(-20,40,10),display_mode='z',black_bg=True,symmetric_cbar = True)
             plt.savefig(buf2, format='png', bbox_inches='tight')
             plt.close()
             buf2.seek(0)
@@ -589,14 +597,16 @@ if mapping_done_flag:
         with st.spinner('Rendering...'):
             result_df.reset_index(inplace=True)
             result_df.columns = [['Anatomical Name','Phenotype']]
-
+            # Avoid zero-value brain regions being recognized as background in visualization by adding a small value.
+            numeric_cols = result_df.select_dtypes(include=['number']).columns
+            result_df[numeric_cols] = result_df[numeric_cols].mask(result_df[numeric_cols] == 0, 1e-5)
             target_img = map_mouse_phenotype_to_nifti(result_df, mouse_atlas_info, mouse_atlas_image)
             
             buf = BytesIO()
             display = plotting.plot_stat_map(
                 target_img, bg_img=mouse_template, display_mode='y',
                 cut_coords=range(-3, 3, 1), cmap='coolwarm',
-                draw_cross=False, annotate=True)
+                draw_cross=False, annotate=True,symmetric_cbar = True)
             plt.savefig(buf, format='png', bbox_inches='tight')
             plt.close()
             buf.seek(0)

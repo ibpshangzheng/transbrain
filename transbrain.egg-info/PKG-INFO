@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: transbrain
-Version: 1.8.1
+Version: 1.8.6
 Summary: TransBrain is an integrated computational framework for bidirectional translation of brain-wide phenotypes between humans and mice.
 Home-page: https://github.com/ibpshangzheng/transbrain
 Author: Shangzheng Huang

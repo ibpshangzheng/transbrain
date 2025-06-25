@@ -7,7 +7,7 @@ Advanced Use
 
 - If you have more specific needs (such as constructing mapping matrices based on your own data or atlases), this tutorial will help you.
 
-- On each page you can find a brief introduction of the data and methods, for detailed description please refer to our `paper <https://www.biorxiv.org/content/10.1101/2025.01.27.635016v2.abstract>`_.
+- On each page you can find a brief introduction of the data and methods, for detailed description please refer to our `preprint <https://www.biorxiv.org/content/10.1101/2025.01.27.635016v2.abstract>`_.
 
 - Due to the large data size, the dataset is not included in the GitHub repository. If needed, you can download it from the link in ``pipeline/datasets/README.md`` and place it in the same directory.
 

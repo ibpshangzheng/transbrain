@@ -11,7 +11,7 @@ Datasets
 .. glossary::
 
     AHBA data
-        The Allen Human Brain Atlas (AHBA) is a microarray dataset of gene expression patterns in the human brain, derived from post-mortem tissue samples. It provides detailed maps of where specific genes are expressed across different regions of the brain, helping to understand brain function and structure.
+        The Allen Human Brain Atlas (AHBA) data is a microarray dataset of gene expression patterns in the human brain, derived from post-mortem tissue samples. It provides detailed maps of where specific genes are expressed across different regions of the brain.
 
         * link: http://human.brain-map.org
         * article: https://www.nature.com/articles/nature11405

@@ -345,7 +345,7 @@ specified atlas type.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="transbrain.trans.SpeciesTrans._dual_mapping">
-<span class="sig-name descname"><span class="pre">_dual_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pheno_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/transbrain/trans.html#SpeciesTrans._dual_mapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#transbrain.trans.SpeciesTrans._dual_mapping" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_dual_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pheno_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/transbrain/trans.html#SpeciesTrans._dual_mapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#transbrain.trans.SpeciesTrans._dual_mapping" title="Permalink to this definition"></a></dt>
 <dd><p>Map phenotype data from source to target space using dual regression.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -354,8 +354,6 @@ specified atlas type.</p>
 <li><p><strong>source_matrix</strong> (<em>np.ndarray</em>) – The embedding matrix for the source species.</p></li>
 <li><p><strong>target_matrix</strong> (<em>np.ndarray</em>) – The embedding matrix for the target species.</p></li>
 <li><p><strong>normalize</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to normalize the phenotype values before regression. Default is False.</p></li>
-<li><p><strong>restore</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to inverse-transform the predicted values back to original scale.
-Only used if <cite>normalize=True</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -400,8 +398,7 @@ Only used if <cite>normalize=True</cite>.</p></li>
 <li><p><strong>phenotype</strong> (<em>pd.DataFrame</em>) – Mouse phenotype DataFrame (regions × phenotypes).</p></li>
 <li><p><strong>region_type</strong> (<em>{'cortex'</em><em>, </em><em>'subcortex'</em><em>, </em><em>'all'}</em><em>, </em><em>optional</em>) – The brain region type to translate. Default is ‘cortex’.</p></li>
 <li><p><strong>normalize</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to normalize data before translation. Default is True.</p></li>
-<li><p><strong>restore</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to restore values back to original scale after translation. Only used if normalize is True.
-Please enable this parameter with caution, unless you are certain that the distributions of this phenotype are consistent between the two species.</p></li>
+<li><p><strong>restore</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to restore values back to original scale after translation. Only used if normalize is True.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -423,8 +420,7 @@ Please enable this parameter with caution, unless you are certain that the distr
 <li><p><strong>phenotype</strong> (<em>pd.DataFrame</em>) – Human phenotype DataFrame (regions × phenotypes).</p></li>
 <li><p><strong>region_type</strong> (<em>{'cortex'</em><em>, </em><em>'subcortex'</em><em>, </em><em>'all'}</em><em>, </em><em>optional</em>) – The brain region type to translate. Default is ‘cortex’.</p></li>
 <li><p><strong>normalize</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to normalize data before translation. Default is True.</p></li>
-<li><p><strong>restore</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to restore values back to original scale after translation. Only used if normalize is True.
-Please enable this parameter with caution, unless you are certain that the distributions of this phenotype are consistent between the two species.</p></li>
+<li><p><strong>restore</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to restore values back to original scale after translation. Only used if normalize is True.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

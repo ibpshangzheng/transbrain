@@ -2,7 +2,7 @@
 
 - We divided it into four parts and stored them on Zendo. You can download them separately and store them according to the directory structure below.
 
-- Other publicly available data before preprocessing can be downloaded through their respective links provided in our documentation and paper.
+- Other publicly available data before preprocessing can be downloaded through their respective links provided in our documentation and preprint.
 
 
 datasets/integrated_dataset/

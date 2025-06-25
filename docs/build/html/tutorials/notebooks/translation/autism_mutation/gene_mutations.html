@@ -283,7 +283,7 @@
 <ul class="simple">
 <li><p>While mouse models enable direct investigation of gene-phenotype relationships, translating these findings to human clinical presentations remains challenging. Here, we demonstrate TransBrain’s utility in bridging this gap, establishing an objective approach to link human imaging phenotypes with genetic mouse models in autism.</p></li>
 <li><p><a class="reference external" href="https://www.fil.ion.ucl.ac.uk/spm/doc/books/hbf2/pdfs/Ch6.pdf">Deformation-based morphology (DBM)</a> method was used to quantify regional volumes based on structural images. For mouse models, we quantified mutation-specific structural alterations by computing standardized volume differences (Cohen’s d) between mutant and control groups. For human patients, we calculated the individual deviation through a normative model (see <strong>Methods</strong> section of our
-<a class="reference external" href="https://www.biorxiv.org/content/10.1101/2025.01.27.635016v2.abstract">paper</a>).</p></li>
+<a class="reference external" href="https://www.biorxiv.org/content/10.1101/2025.01.27.635016v2.abstract">preprint</a>).</p></li>
 <li><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/35650452/">Normative Modeling</a> approach characterizes atypical brain features by comparing each individual against a statistical model of typical brain development, to quantify region-specific brain volume deviations.</p></li>
 </ul>
 <section id="Data">
@@ -294,7 +294,7 @@
 <li><p>Pre-saved data: (<a class="reference external" href="https://github.com/ibpshangzheng/Transbrain/tree/main/tutorials/notebooks/translation/autism_mutation">link</a>)</p></li>
 </ul>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -316,7 +316,7 @@
 </div>
 <p>The pipeline is shown in the figure below.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img_path</span> <span class="o">=</span> <span class="s1">&#39;./case3.png&#39;</span>
@@ -337,7 +337,7 @@
 </div>
 <p>Load pre-saved deviation pattern in autistic individuals</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">human_deviation_pattern</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;z_autism_regress.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -345,7 +345,7 @@
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">human_deviation_pattern</span>
@@ -353,7 +353,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -670,7 +670,7 @@
 </div>
 <p>Load pre-saved deviation patterns in autism mouse models.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_mutation_pattern</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;magel2_mutation_pattern.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -678,7 +678,7 @@
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mouse_mutation_pattern</span>
@@ -686,7 +686,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -767,7 +767,7 @@
 <h2>Translating mouse mutation patterns to human<a class="headerlink" href="#Translating-mouse-mutation-patterns-to-human" title="Permalink to this heading"></a></h2>
 <p>Using TransBrain, we can translate the mutation patterns from mouse models to humans and compare them with human deviation patterns.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Transformer</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">trans</span><span class="o">.</span><span class="n">SpeciesTrans</span><span class="p">(</span><span class="s1">&#39;bn&#39;</span><span class="p">)</span>
@@ -783,7 +783,7 @@ INFO:root:Initialized for bn atlas.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">Transformer</span><span class="o">.</span><span class="n">mouse_to_human</span><span class="p">)</span>
@@ -810,7 +810,6 @@ mouse_to_human(phenotype: pandas.core.frame.DataFrame, region_type: Literal[&#39
         Whether to normalize data before translation. Default is True.
     restore : bool, optional
         Whether to restore values back to original scale after translation. Only used if normalize is True.
-        Please enable this parameter with caution, unless you are certain that the distributions of this phenotype are consistent between the two species.
 
     Returns
     -------
@@ -820,7 +819,7 @@ mouse_to_human(phenotype: pandas.core.frame.DataFrame, region_type: Literal[&#39
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mutation_trans_in_human</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">mouse_to_human</span><span class="p">(</span><span class="n">mouse_mutation_pattern</span><span class="p">,</span><span class="n">region_type</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
@@ -839,7 +838,7 @@ INFO:root:Successfully translated mouse all phenotypes to human.
 <section id="Calculate-individual-gene-risk-score">
 <h2>Calculate individual gene risk score<a class="headerlink" href="#Calculate-individual-gene-risk-score" title="Permalink to this heading"></a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_species_autism_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -863,7 +862,7 @@ INFO:root:Successfully translated mouse all phenotypes to human.
 </div>
 <p>Finally, we obtain the risk score for each individual.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_species_autism_dataframe</span>
@@ -871,7 +870,7 @@ INFO:root:Successfully translated mouse all phenotypes to human.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
