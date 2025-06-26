@@ -248,29 +248,41 @@ elif data_type == 'Image':
 
 # Step 7: Prefix input
 st.sidebar.markdown(
-    '<div style="font-size: 1em; font-weight: bold; margin-bottom: -30px;">Step 7: Enter Save Prefix</div>',
+    '<div style="font-size: 1em; font-weight: bold; margin-bottom: -35px;">Step 7: Enter Save Prefix</div>',
     unsafe_allow_html=True
 )
 prefix = st.sidebar.text_input("", "Transformed_phenotype")
 
+st.sidebar.markdown(
+    '<div style="font-size: 1em; font-weight: bold;margin-top: 3px; margin-bottom: 10px;">Step 8: Optional Settings</div>',
+    unsafe_allow_html=True
+)
+
 # Step 8: Optional flags
 st.sidebar.markdown(
-    '<div style="font-size: 1em; font-weight: bold; margin-bottom: 6px;">Step 8: Normalization Option</div>',
+    '<div style="font-size: 0.9em; font-weight: bold; margin-bottom: 6px;">Normalization Option</div>',
     unsafe_allow_html=True
 )
 st.sidebar.markdown(
         """
-        <div style="font-size: 0.9em; color: gray; margin-top: 6px; margin-bottom: 15px;">
+        <div style="font-size: 0.9em; color: gray; margin-top: 0px; margin-bottom: 6px;">
             Whether to apply Z-score normalization to the output. If not enabled, the mapped phenotype will retain the source distribution.
         </div>
         """,unsafe_allow_html=True)
-
 normalize_option = st.sidebar.checkbox("Z-score output", value=True)
 
 if normalize_option == True:
     restore_flag = False
 else:
     restore_flag = True
+
+
+#Vis thresh set
+st.sidebar.markdown(
+    '<div style="font-size: 0.9em; font-weight: bold;margin-top: -10px; margin-bottom: 6px;">Visualization Threshold</div>',
+    unsafe_allow_html=True
+)
+vis_thresh = st.sidebar.text_input("View threshold for mapped data (default: none):",value="")
 
 
 # Step 9: Start mapping
@@ -568,7 +580,11 @@ if mapping_done_flag:
             target_img = map_phenotype_to_nifti(result_df, human_atlas)
             
             buf2 = BytesIO()
-            display2 = plotting.plot_stat_map(target_img,cmap='coolwarm',cut_coords=range(-20,40,10),display_mode='z',black_bg=True,symmetric_cbar = True)
+            if vis_thresh != "":
+                thresh_value = float(vis_thresh)
+                display2 = plotting.plot_stat_map(target_img,cmap='coolwarm',cut_coords=range(10, 60, 10),display_mode='x',black_bg=True,symmetric_cbar = True,threshold=thresh_value)
+            else:
+                display2 = plotting.plot_stat_map(target_img,cmap='coolwarm',cut_coords=range(10, 60, 10),display_mode='x',black_bg=True,symmetric_cbar = True)
             plt.savefig(buf2, format='png', bbox_inches='tight')
             plt.close()
             buf2.seek(0)
@@ -585,7 +601,7 @@ if mapping_done_flag:
             source_img = map_phenotype_to_nifti(data_df, human_atlas)
 
             buf2 = BytesIO()
-            display2 = plotting.plot_stat_map(source_img,cmap='coolwarm',cut_coords=range(-20,40,10),display_mode='z',black_bg=True,symmetric_cbar = True)
+            display2 = plotting.plot_stat_map(source_img,cmap='coolwarm',cut_coords=range(10,60,10),display_mode='x',black_bg=True,symmetric_cbar = True)
             plt.savefig(buf2, format='png', bbox_inches='tight')
             plt.close()
             buf2.seek(0)
@@ -603,10 +619,18 @@ if mapping_done_flag:
             target_img = map_mouse_phenotype_to_nifti(result_df, mouse_atlas_info, mouse_atlas_image)
             
             buf = BytesIO()
-            display = plotting.plot_stat_map(
-                target_img, bg_img=mouse_template, display_mode='y',
-                cut_coords=range(-3, 3, 1), cmap='coolwarm',
-                draw_cross=False, annotate=True,symmetric_cbar = True)
+            if vis_thresh != "":
+                thresh_value = float(vis_thresh)
+                display = plotting.plot_stat_map(
+                    target_img, bg_img=mouse_template, display_mode='y',
+                    cut_coords=range(-3, 3, 1), cmap='coolwarm',
+                    draw_cross=False, annotate=True,symmetric_cbar = True, threshold=thresh_value)
+            else:
+                display = plotting.plot_stat_map(
+                    target_img, bg_img=mouse_template, display_mode='y',
+                    cut_coords=range(-3, 3, 1), cmap='coolwarm',
+                    draw_cross=False, annotate=True,symmetric_cbar = True)
+                               
             plt.savefig(buf, format='png', bbox_inches='tight')
             plt.close()
             buf.seek(0)
