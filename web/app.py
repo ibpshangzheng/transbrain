@@ -305,6 +305,17 @@ if st.sidebar.button("9. Start Mapping"):
 
             del atlas_dict
             del img
+        
+        # Check if users upload non whole brain pehnotypes
+        valid_regions_count = (data_df != 0).sum().sum()  # Count non-zero values
+        unique_values_count = len(data_df['Phenotype'].unique())  # Count unique values (including 0)
+
+        if valid_regions_count < 5 or unique_values_count < 6:
+                st.sidebar.warning(
+                    "Important Note: TransBrain is designed for whole-brain phenotype transformation; "
+                    "users should exercise caution when using it to infer precise individual homologous brain regions. "
+                )
+
 
         #Initialize TransBrain
         Transformer = tb.trans.SpeciesTrans(atlas_flag)
@@ -562,7 +573,7 @@ if mapping_done_flag:
             buf = BytesIO()
             display = plotting.plot_stat_map(
                 source_img, bg_img=mouse_template, display_mode='y',
-                cut_coords=range(-3, 3, 1), cmap='coolwarm',
+                cut_coords=[2, 1, -1.5, -2, -3], cmap='coolwarm',
                 draw_cross=False, annotate=True, symmetric_cbar = True)
             plt.savefig(buf, format='png', bbox_inches='tight')
             plt.close()
@@ -623,12 +634,12 @@ if mapping_done_flag:
                 thresh_value = float(vis_thresh)
                 display = plotting.plot_stat_map(
                     target_img, bg_img=mouse_template, display_mode='y',
-                    cut_coords=range(-3, 3, 1), cmap='coolwarm',
+                    cut_coords=[2, 1, -1.5, -2, -3], cmap='coolwarm',
                     draw_cross=False, annotate=True,symmetric_cbar = True, threshold=thresh_value)
             else:
                 display = plotting.plot_stat_map(
                     target_img, bg_img=mouse_template, display_mode='y',
-                    cut_coords=range(-3, 3, 1), cmap='coolwarm',
+                    cut_coords=[2, 1, -1.5, -2, -3], cmap='coolwarm',
                     draw_cross=False, annotate=True,symmetric_cbar = True)
                                
             plt.savefig(buf, format='png', bbox_inches='tight')
