@@ -47,9 +47,9 @@ Key Features
 
 ~~~~ 
 
-Method Glossory
+Method Glossary
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The process of building TransBrain involves several steps, which may be confusing for those who are not from related fields. To help users better understand the methodology, we set up a :ref:`glossory` page.
+The process of building TransBrain involves several steps, which may be confusing for those who are not from related fields. To help users better understand the methodology, we set up a :ref:`glossary` page.
 
 ~~~~ 
 
@@ -101,7 +101,7 @@ Contents
    :maxdepth: 2
    :caption: Tutorials
 
-   ./methods/method_glossory
+   ./methods/method_glossary
    online_mapping
    tutorials/notebooks/basic_usage/basic_use_mouse_to_human.ipynb
    tutorials/notebooks/basic_usage/basic_use_human_to_mouse.ipynb

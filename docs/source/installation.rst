@@ -11,15 +11,15 @@ To install TransBrain as a package in your environment, run:
 
       pip install transbrain
 
-You can also create a conda environment from the `environment.yml <https://github.com/ibpshangzheng/transbrain/blob/main/environment.yml>`_ file:
+To create a new Conda environment with TransBrain included, use `environment.yml <https://github.com/ibpshangzheng/transbrain/blob/main/environment.yml>`_ on Linux, or `environment_win.yml <https://github.com/ibpshangzheng/transbrain/blob/main/environment_win.yml>`_ / `environment_mac.yml <https://github.com/ibpshangzheng/transbrain/blob/main/environment_mac.yml>`_ for Windows and macOS:
 
-- First, clone this `repository <https://github.com/ibpshangzheng/transbrain>`_ :
+- First, clone this `repository <https://github.com/ibpshangzheng/transbrain>`_ ,
 
 .. code-block:: bash
 
       git clone https://github.com/ibpshangzheng/transbrain.git
 
-- Then, create the environment:
+- Then, create the environment,
 
 .. code-block:: bash
 
@@ -27,7 +27,7 @@ You can also create a conda environment from the `environment.yml <https://githu
       
       conda env create -f environment.yml
 
-- Activate the environment:
+- Activate the environment,
 
 .. code-block:: bash
 
@@ -51,6 +51,7 @@ The project mainly depends on Python (3.8 - 3.11). Key dependencies include::
     six==1.17.0
     tqdm==4.67.1
     ipykernel==6.29.5
+    anndata==0.9.2
 
 See the full list in the `environment.yml <https://github.com/ibpshangzheng/transbrain/blob/main/environment.yml>`_ file.
 

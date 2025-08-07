@@ -22,13 +22,13 @@ If you wish to learn more about the construction details of this method, please 
 ## Installation
 TransBrain is on pypi: https://pypi.org/project/transbrain/
 
-To install TransBrain as a package, run:
+To install TransBrain as a package in your environment, run:
 
 ```sh
 pip install transbrain
 ```
 
-You can also create a conda environment from the environment.yml file:
+To create a new Conda environment with TransBrain included, use environment.yml on Linux, or environment_win.yml / environment_mac.yml for Windows and macOS:
 
 * First, clone this repository,
 ```sh
@@ -64,6 +64,7 @@ seaborn==0.13.2,
 six==1.17.0
 tqdm==4.67.1
 ipykernel==6.29.5
+anndata==0.9.2
 ```
 See full list in environment.yml file. 
 

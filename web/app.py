@@ -306,7 +306,7 @@ if st.sidebar.button("9. Start Mapping"):
             del atlas_dict
             del img
         
-        # Check if users upload non whole brain pehnotypes
+        # Check if users upload non whole brain phenotypes
         valid_regions_count = (data_df != 0).sum().sum()  # Count non-zero values
         unique_values_count = len(data_df['Phenotype'].unique())  # Count unique values (including 0)
 
