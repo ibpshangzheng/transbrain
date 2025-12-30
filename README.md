@@ -115,7 +115,6 @@ To accommodate the different needs of users, we provide **three levels of usage 
 More detailed tutorials and API references of TransBrain can be found in our [documentation](https://transbrain.readthedocs.io/en/latest/). This helps seamless integration into your existing workflows. 🚀
 
 
-
 ## License
 This project is covered under the Apache 2.0 License.
 
