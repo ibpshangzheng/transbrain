@@ -79,11 +79,9 @@ def generate_matrix(anndata_path,params):
                                   columns=anndata_ex.var['Gene'].values.tolist())
         
         expression = expression.drop(index="other", errors="ignore")
-
         common_gene = pd.read_csv(params.data_files['gene_path'])
         common_gene = common_gene['genes'].to_list()
         expression = expression[common_gene]
-
         expression.rename_axis('index',inplace=True)
         expression.reset_index(inplace=True)
 
