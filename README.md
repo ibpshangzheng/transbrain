@@ -16,7 +16,7 @@ What can TransBrain do?
 
 ## Further Reading
 
-If you wish to learn more about the construction details of this method, please refer to our article: [https://www.biorxiv.org/content/10.1101/2025.01.27.635016v1](https://www.biorxiv.org/content/10.1101/2025.01.27.635016v1) (in preprint).
+If you wish to learn more about the construction details of this method, please refer to our paper: [TransBrain: a computational framework for translating brain-wide phenotypes between humans and mice](https://doi.org/10.1038/s41592-025-02961-3).
 
 
 ## Installation
